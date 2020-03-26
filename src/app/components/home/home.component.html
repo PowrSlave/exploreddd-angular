@@ -9,6 +9,7 @@
       <div class="big-text">September 14-18, 2020<br>Keystone&nbsp;&#124;&nbsp;Colorado</div>
   </div>
 </div>
+
 <div class="container homepage--intro-text">
   <div class="row">
       <p style="font-size: 20px;"><strong>Only Explore DDD brings together the world's best software architects, developers, technical leaders, and industry experts for three days of in-depth workshops, best-in-class learning and unparalleled community. Will you be there?</strong></p>
@@ -17,6 +18,7 @@
       <p><em>&#8212; Alex Gemmell, PatientPop</em></p>
   </div>
 </div>
+
 <div class="container section homepage-video">
   <div class="row">
       <div class="col-xs-12">
@@ -26,6 +28,7 @@
       </div>
   </div>
 </div>
+
 <div class="container homepage--why-you-should-attend">
   <div class="row">
       <h1 class="text-center">7 REASONS TO ATTEND</h1>
@@ -51,3 +54,29 @@
       <p class="text-center">Explore DDD is dedicated to providing a harassment-free conference experience for everyone, regardless of gender, gender identity and expression, age, sexual orientation, disability, physical appearance, body size, race, ethnicity, or religion (or lack thereof). Read the full Code of Conduct on the <a href="#" routerLink="about">about page</a>.</p>
   </div>
 </div>
+
+<div class="section speakers">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <h1 class="text-center">Keynote Speakers</h1>
+        <div class="row">
+          <div class="speaker-container" li *ngFor="let topSpeaker of topSpeakers">
+            <a href="#"><img src={{topSpeaker.profilePicture}}></a>
+            <h3><a class="speaker-name" href="#">{{topSpeaker.fullName}}</a></h3>
+            <p class="speaker-details">{{topSpeaker.tagLine}}</p>
+          </div>
+        </div>
+        <h1 class="text-center">Featured Speakers</h1>
+        <div class="row">
+          <div class="speaker-container" li *ngFor="let speaker of speakers">
+            <a href="#"><img src={{speaker.profilePicture}}></a>
+            <h3><a class="speaker-name" href="#">{{speaker.fullName}}</a></h3>
+            <p class="speaker-details">{{speaker.tagLine}}</p>
+          </div>
+        </div>
+        <p class="text-center"><a routerLink="/speakers">VIEW ALL SPEAKERS</a></p>
+      </div> <!-- col-lg-12 -->
+    </div> <!-- row -->
+  </div> <!-- container -->
+</div> <!-- section speakers -->

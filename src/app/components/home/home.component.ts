@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from '../../data.service';
 declare var $: any;
 
 @Component({
@@ -8,7 +9,12 @@ declare var $: any;
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  //speakers:Array<any>;
+  speakers = [];
+
+  topSpeakers = [];
+
+  constructor(private dataService: DataService) { }
 
   ngOnInit() {
     //homepage resize jquery/javascript likely should go here?
@@ -27,6 +33,16 @@ export class HomeComponent implements OnInit {
         $(".homepage--hero-video-container").css("height",videoheight);
       }).resize();
     });
+
+    //featured speakers sessionize GET
+    this.dataService.sendGetRequest().subscribe((data: any[]) => {
+      console.log(data);
+      this.speakers = data;
+
+      this.topSpeakers = this.speakers.filter(speaker => speaker.isTopSpeaker);
+      console.log(this.topSpeakers);
+    });
+
   }
 
 }
