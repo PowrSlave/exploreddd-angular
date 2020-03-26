@@ -730,7 +730,6 @@ figure {
 			text-align: center;
 		}
 		@include mq(md) {
-			flex-wrap: nowrap;
 		}
 	}
 }
@@ -739,8 +738,24 @@ figure {
 	display: block;
 	@include mq(sm) {
 		display: inline-block;
-		max-width: 150px;
-	}
+    max-width: 150px;
+
+  }
+  @include mq(md) {
+		margin: $standard-margin $standard-margin 0 $standard-margin;
+  }
+  img {
+    width: 150px;
+    height: 150px;
+    border-radius: 100px;
+    filter: gray; /* IE6-9 */
+    -webkit-filter: grayscale(100%);
+    transition: filter 0.4s;
+    &:hover {
+      filter: none;
+      -webkit-filter: grayscale(0%);
+    }
+  }
 	h3 {
 		margin-bottom: 10px;
 	}

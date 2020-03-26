@@ -10,6 +10,7 @@ export class HomeComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    //homepage resize jquery/javascript likely should go here?
   }
 
 }

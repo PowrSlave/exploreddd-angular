@@ -10,13 +10,15 @@ import { DataService } from '../../data.service';
 
 export class SpeakersComponent implements OnInit {
 
-  items:Array<any>;
+  //speakers:Array<any>;
+  speakers = [];
 
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
-    this.dataService.sendGetRequest().subscribe((responseBody) => {
-      console.log(responseBody);
+    this.dataService.sendGetRequest().subscribe((data: any[]) => {
+      console.log(data);
+      this.speakers = data;
     });
   }
 
