@@ -6,9 +6,11 @@ import { retry, catchError } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
+
 export class DataService {
 
-  apiUrl = "https://sessionize.com/api/v2/lrqa96hc/view/Speakers";
+  speakersEndPointUrl = "https://sessionize.com/api/v2/lrqa96hc/view/Speakers";
+  scheduleEndpointUrl = '';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -25,8 +27,12 @@ export class DataService {
     return throwError(errorMessage);
   }
 
-  sendGetRequest() {
-    return this.httpClient.get(this.apiUrl).pipe(retry(3),catchError(this.handleError));
+  getSpeakers() {
+    return this.httpClient.get(this.speakersEndPointUrl).pipe(retry(3),catchError(this.handleError));
+  }
+
+  getSchedule() {
+    return this.httpClient.get(this.scheduleEndpointUrl).pipe(retry(3),catchError(this.handleError));
   }
 
 }

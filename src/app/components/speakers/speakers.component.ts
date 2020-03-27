@@ -12,14 +12,14 @@ import { Subject } from 'rxjs';
 
 export class SpeakersComponent implements OnInit, OnDestroy {
 
-  //speakers:Array<any>;
-  speakers = [];
+  speakers:Array<any>;
+  //speakers = [];
   destroy$: Subject<boolean> = new Subject<boolean>();
 
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
-    this.dataService.sendGetRequest().pipe(takeUntil(this.destroy$)).subscribe((data: any[])=>{
+    this.dataService.getSpeakers().pipe(takeUntil(this.destroy$)).subscribe((data: any[])=>{
       console.log(data);
       this.speakers = data;
     })
