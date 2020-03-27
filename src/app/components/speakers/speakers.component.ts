@@ -13,7 +13,6 @@ import { Subject } from 'rxjs';
 export class SpeakersComponent implements OnInit, OnDestroy {
 
   speakers:Array<any>;
-  //speakers = [];
   destroy$: Subject<boolean> = new Subject<boolean>();
 
   constructor(private dataService: DataService) { }

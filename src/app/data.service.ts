@@ -10,7 +10,7 @@ import { retry, catchError } from 'rxjs/operators';
 export class DataService {
 
   speakersEndPointUrl = "https://sessionize.com/api/v2/lrqa96hc/view/Speakers";
-  scheduleEndpointUrl = '';
+  scheduleEndpointUrl = 'https://sessionize.com/api/v2/lrqa96hc/view/GridSmart';
 
   constructor(private httpClient: HttpClient) { }
 
