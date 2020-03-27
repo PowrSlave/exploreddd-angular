@@ -26,6 +26,7 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
+              "src/404.html",
               "src/2017",
               "src/2018",
               "src/2019"
