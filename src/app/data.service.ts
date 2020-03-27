@@ -26,7 +26,7 @@ export class DataService {
   }
 
   sendGetRequest() {
-    return this.httpClient.get(this.apiUrl).pipe(catchError(this.handleError));
+    return this.httpClient.get(this.apiUrl).pipe(retry(3),catchError(this.handleError));
   }
 
 }
