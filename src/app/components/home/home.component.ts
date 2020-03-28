@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
+    
     //homepage resize jquery/javascript likely should go here?
     jQuery(document).ready(function() {
       //console.log('hio! you hit the homepage module!');
