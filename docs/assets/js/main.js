@@ -61,7 +61,6 @@ $('.view-videos').on('click', function(e){
 });
 
 //Submenu Toggles
-
 $('.submenu-toggle').on('click', function(e){
   var parent = $(e.currentTarget).parent();
   parent.toggleClass('open');
