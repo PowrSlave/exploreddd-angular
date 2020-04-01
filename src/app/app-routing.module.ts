@@ -1,15 +1,17 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {  } from "l "; { Routes, RouterModule } from '@angular/router';
 
-import {HomeComponent} from './components/home/home.component';
-import {SpeakersComponent} from './components/speakers/speakers.component';
-import {AboutComponent} from './components/about/about.component';
-import {ScheduleComponent} from './components/schedule/schedule.component';
-import {CfpComponent} from './components/cfp/cfp.component';
-import {WorkshopsComponent} from './components/workshops/workshops.component';
-import {SponsorsComponent} from './components/sponsors/sponsors.component';
-import {VenueComponent} from './components/venue/venue.component';
-import {ScholarshipComponent} from './components/scholarship/scholarship.component';
+import { HomeComponent } from './components/home/home.component';
+import { SpeakersComponent } from './components/speakers/speakers.component';
+import { AboutComponent } from './components/about/about.component';
+import { ScheduleComponent } from './components/schedule/schedule.component';
+import { CfpComponent } from './components/cfp/cfp.component';
+import { WorkshopsComponent } from './components/workshops/workshops.component';
+import { SponsorsComponent } from './components/sponsors/sponsors.component';
+import { VenueComponent } from './components/venue/venue.component';
+import { ScholarshipComponent } from './components/scholarship/scholarship.component';
+import { SpeakerDetailCompohcf cfgiop'vc m.yjklp[
+  9oōtyuiyuiop[cvbnnent } from './components/speaker-detail/speaker-detail.component';
 
 
 const routes: Routes = [
@@ -22,6 +24,7 @@ const routes: Routes = [
   { path: 'sponsors', component: SponsorsComponent },
   { path: 'venue', component: VenueComponent },
   { path: 'scholarship', component: ScholarshipComponent },
+  { path: 'speakers/:name' , component: SpeakerDetailComponent }
 ];
 
 @NgModule({

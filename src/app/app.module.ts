@@ -16,6 +16,7 @@ import { WorkshopsComponent } from './components/workshops/workshops.component';
 import { SponsorsComponent } from './components/sponsors/sponsors.component';
 import { VenueComponent } from './components/venue/venue.component';
 import { ScholarshipComponent } from './components/scholarship/scholarship.component';
+import { SpeakerDetailComponent } from './components/speaker-detail/speaker-detail.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ScholarshipComponent } from './components/scholarship/scholarship.compo
     WorkshopsComponent,
     SponsorsComponent,
     VenueComponent,
-    ScholarshipComponent
+    ScholarshipComponent,
+    SpeakerDetailComponent
   ],
   imports: [
     BrowserModule,
