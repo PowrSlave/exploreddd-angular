@@ -38,7 +38,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         jQuery(".homepage--hero-video-container").css("height",videoheight);
 
         var topStuff = navheight + homepagetopbar;
-        console.log('height of topStuff is ' + topStuff);
+        //console.log('height of topStuff is ' + topStuff);
         jQuery(".alert-covid-notice").css("top",topStuff);
       }).resize();
     });
