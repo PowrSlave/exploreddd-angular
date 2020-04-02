@@ -155,7 +155,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       path: 'scholarship',
       component: _components_scholarship_scholarship_component__WEBPACK_IMPORTED_MODULE_10__["ScholarshipComponent"]
     }, {
-      path: 'speakers/:name',
+      path: 'speaker-detail/:name',
       component: _components_speaker_detail_speaker_detail_component__WEBPACK_IMPORTED_MODULE_11__["SpeakerDetailComponent"]
     }];
 
@@ -1957,8 +1957,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               var videoheight = bodyheight - navheight - homepagetopbar;
               jQuery(".homepage--hero-video-container").css("margin-top", homepagetopbar);
               jQuery(".homepage--hero-video-container").css("height", videoheight);
-              var topStuff = navheight + homepagetopbar;
-              console.log('height of topStuff is ' + topStuff);
+              var topStuff = navheight + homepagetopbar; //console.log('height of topStuff is ' + topStuff);
+
               jQuery(".alert-covid-notice").css("top", topStuff);
             }).resize();
           }); //featured speakers sessionize GET
@@ -2933,36 +2933,237 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
     /*! @angular/core */
     "./node_modules/@angular/core/__ivy_ngcc__/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _data_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! ../../data.service */
+    "./src/app/data.service.ts");
+    /* harmony import */
+
+
+    var rxjs_operators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! rxjs/operators */
+    "./node_modules/rxjs/_esm2015/operators/index.js");
+    /* harmony import */
+
+
+    var rxjs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! rxjs */
+    "./node_modules/rxjs/_esm2015/index.js");
 
     var SpeakerDetailComponent =
     /*#__PURE__*/
     function () {
-      function SpeakerDetailComponent() {
+      function SpeakerDetailComponent(dataService) {
         _classCallCheck(this, SpeakerDetailComponent);
+
+        this.dataService = dataService;
+        this.destroy$ = new rxjs__WEBPACK_IMPORTED_MODULE_3__["Subject"]();
       }
 
       _createClass(SpeakerDetailComponent, [{
         key: "ngOnInit",
-        value: function ngOnInit() {}
+        value: function ngOnInit() {
+          var _this3 = this;
+
+          this.dataService.getSpeakers().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["takeUntil"])(this.destroy$)).subscribe(function (data) {
+            console.log(data);
+            _this3.speakers = data;
+          });
+        }
+      }, {
+        key: "ngOnDestroy",
+        value: function ngOnDestroy() {
+          this.destroy$.next(true); // Unsubscribe from the subject
+
+          this.destroy$.unsubscribe();
+        }
       }]);
 
       return SpeakerDetailComponent;
     }();
 
     SpeakerDetailComponent.ɵfac = function SpeakerDetailComponent_Factory(t) {
-      return new (t || SpeakerDetailComponent)();
+      return new (t || SpeakerDetailComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_data_service__WEBPACK_IMPORTED_MODULE_1__["DataService"]));
     };
 
     SpeakerDetailComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({
       type: SpeakerDetailComponent,
       selectors: [["app-speaker-detail"]],
-      decls: 2,
+      features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵProvidersFeature"]([_data_service__WEBPACK_IMPORTED_MODULE_1__["DataService"]])],
+      decls: 55,
       vars: 0,
+      consts: [[1, "container", "featured-speaker"], [1, "row"], [1, "col-xs-12", "col-sm-2", "img-container"], ["src", "../img/speakers/Alberto-Brandolini-ON.png", 1, "speaker-page-img"], [1, "col-xs-12", "col-sm-10", "copy-container"], [1, "speaker-header"], [1, "speaker-subtitle"], ["href", "https://twitter.com/ziobrando", "target", "_blank", 1, "speaker-handle"], ["href", "../workshops/eventstorming-masterclass.html"], ["href", "paul-rayner.html"], [1, "gold"]],
       template: function SpeakerDetailComponent_Template(rf, ctx) {
         if (rf & 1) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "p");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1, "speaker-details works!");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 1);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "div", 2);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](3, "img", 3);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "div", 4);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "h1", 5);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](6, "Alberto Brandolini");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](7, "span", 6);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](8, "Inventor of EventStorming");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "p");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](10, "a", 7);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](11, "@ziobrando");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](12, "p");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](13, "Alberto Brandolini can model every business domain, given enough space, a paper roll and an unlimited source of colored sticky notes (with a larger stock of orange ones). His contributions to the community include EventStorming, Model Storming and, more notably, the Bullshit Asymmetry Principle.");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](14, "p");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](15, "Alberto Brandolini is an IT Professional that gets bored doing things in the same old way. This led him into unexplored areas of Domain-Driven Design, Lean and Agile Software Development, learning and change management, where he likes to bring apparent chaotic fuzziness and a comic-like visual touch. An active consultant in software product development, he also runs his company Avanscoperta.");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](16, "p");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](17, "He\u2019s frequently invited as a speaker in many conferences in Italy (where he\u2019s based) and around Europe.");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](18, "h2");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](19, "2-day pre-conference workshop, Tue-Wed, Sept 17-18");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](20, "h2");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](21, "a", 8);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](22, "EventStorming Masterclass");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](23, "p");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](24, "Co-presented with ");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](25, "a", 9);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](26, "Paul Rayner");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](27, "p");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](28, "EventStorming is a workshop format that promotes collaboration between different disciplines in order to sove business problems in the most effective way. In this two day format we\u2019ll experience the different formats, working around real business problems. We\u2019ll take into account the different perspectives (including the facilitator) in a process that spans large scale discovery, to leverage collaborative design. We\u2019ll experience the how, and we\u2019ll discuss the why. ");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](29, "a", 8);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](30, "Read more...");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](31, "h2");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](32, "Keynote");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](33, "h2", 10);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](34, "The Gordian Knot \u2192 Hatching Software Development Ecosystems");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](35, "p");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](36, "Some companies are going \u201Cfull DevOps\u201D and apparently releasing at the speed of light. Other companies are still struggling with estimations and slowly thinking about going microservices. Others are happy with their monolith, but struggling with recruiting.");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](37, "p");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](38, "We\u2019re all developers, but we\u2019re not doing the same job. The line connecting a problem to its solution is relatively straight in some organizations and incredibly convoluted in some others.");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](39, "p");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](40, "Processes, Software architectures and Organization are not separate concerns, neither are they orthogonal. Pretending to fix one thing without touching others is a losing battle.");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](41, "p");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](42, "We\u2019re part of the problem. Our software is part of the problem. We can be part of the solution too.");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](43, "h2");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](44, "Hands-On Session");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](45, "h2", 10);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](46, "EventStorming Race");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](47, "p");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](48, "Co-presented with ");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](49, "a", 9);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](50, "Paul Rayner");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](51, "p");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](52, "Experience the dynamics of a Big Picture EventStorming by modeling a real-world complexity system, team vs team.");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](53, "p");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](54, "It will be messy, loud, chaotic and entertaining. And addictive too!");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         }
@@ -2977,10 +3178,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         args: [{
           selector: 'app-speaker-detail',
           templateUrl: './speaker-detail.component.html',
-          styleUrls: ['./speaker-detail.component.scss']
+          styleUrls: ['./speaker-detail.component.scss'],
+          providers: [_data_service__WEBPACK_IMPORTED_MODULE_1__["DataService"]]
         }]
       }], function () {
-        return [];
+        return [{
+          type: _data_service__WEBPACK_IMPORTED_MODULE_1__["DataService"]
+        }];
       }, null);
     })();
     /***/
@@ -3096,11 +3300,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(SpeakersComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this3 = this;
+          var _this4 = this;
 
           this.dataService.getSpeakers().pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_2__["takeUntil"])(this.destroy$)).subscribe(function (data) {
             console.log(data);
-            _this3.speakers = data;
+            _this4.speakers = data;
           });
         }
       }, {
@@ -3737,7 +3941,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         _classCallCheck(this, DataService);
 
         this.httpClient = httpClient;
-        this.speakersEndPointUrl = "https://sessionize.com/api/v2/lrqa96hc/view/Speakers";
+        this.speakersEndPointUrl = "https://sessionize.com/api/v2/75tc7uhn/view/Speakers";
         this.scheduleEndpointUrl = 'https://sessionize.com/api/v2/lrqa96hc/view/GridSmart';
       }
 
