@@ -913,6 +913,7 @@ h2.conference-emphasis {
 }
 
 .featured-speaker.container {
+  margin-top: $standard-margin + 10px; //this needs polished
 	.img-container {
 		display: block;
 		text-align: center;
