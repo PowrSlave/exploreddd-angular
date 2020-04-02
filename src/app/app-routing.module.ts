@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import {  } from "l "; { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './components/home/home.component';
 import { SpeakersComponent } from './components/speakers/speakers.component';
@@ -10,8 +10,7 @@ import { WorkshopsComponent } from './components/workshops/workshops.component';
 import { SponsorsComponent } from './components/sponsors/sponsors.component';
 import { VenueComponent } from './components/venue/venue.component';
 import { ScholarshipComponent } from './components/scholarship/scholarship.component';
-import { SpeakerDetailCompohcf cfgiop'vc m.yjklp[
-  9oōtyuiyuiop[cvbnnent } from './components/speaker-detail/speaker-detail.component';
+import { SpeakerDetailComponent } from './components/speaker-detail/speaker-detail.component';
 
 
 const routes: Routes = [

@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
-    
+
     //homepage resize jquery/javascript likely should go here?
     jQuery(document).ready(function() {
       //console.log('hio! you hit the homepage module!');
@@ -36,6 +36,10 @@ export class HomeComponent implements OnInit, OnDestroy {
         var videoheight = bodyheight - navheight - homepagetopbar;
         jQuery(".homepage--hero-video-container").css("margin-top",homepagetopbar);
         jQuery(".homepage--hero-video-container").css("height",videoheight);
+
+        var topStuff = navheight + homepagetopbar;
+        console.log('height of topStuff is ' + topStuff);
+        jQuery(".alert-covid-notice").css("top",topStuff);
       }).resize();
     });
 
