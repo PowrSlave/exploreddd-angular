@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { DataService } from '../../data.service';
+import { DataService } from '../../services/data.service';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
@@ -20,7 +20,6 @@ export class SpeakersComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.dataService.getSpeakers().pipe(takeUntil(this.destroy$)).subscribe((data: any[])=>{
       this.speakers = data;
-      //can't rely on this yet. Just link by first name for now in template
       this.speakers.forEach(function(obj) {
         obj.linkParam = `${obj.firstName}-${obj.lastName}`
         obj.linkParam = obj.linkParam.toLowerCase();

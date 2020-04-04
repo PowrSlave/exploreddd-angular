@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { DataService } from '../../data.service';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-speaker-detail',
