@@ -5,8 +5,8 @@
         <h1 class="text-center">Speakers</h1>
         <div class="row">
           <div class="speaker-container" li *ngFor="let speaker of speakers">
-            <a href="#"><img src={{speaker.profilePicture}}><!--<div class="speaker-img adam-tornhill"></div>--></a>
-            <h3><a class="speaker-name" href="#">{{speaker.fullName}}</a></h3>
+          <!--<a [routerLink]="['/speakers',speaker.linkParam]">--><a [routerLink]="['/speakers',speaker.fullName]"><img src={{speaker.profilePicture}}></a>
+            <h3><a [routerLink]="['/speakers',speaker.fullName]">{{speaker.fullName}}</a></h3>
             <p class="speaker-details">{{speaker.tagLine}}</p>
           </div>
         </div>

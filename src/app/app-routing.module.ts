@@ -23,7 +23,7 @@ const routes: Routes = [
   { path: 'sponsors', component: SponsorsComponent },
   { path: 'venue', component: VenueComponent },
   { path: 'scholarship', component: ScholarshipComponent },
-  { path: 'speaker-detail/:name', component: SpeakerDetailComponent }
+  { path: 'speakers/:name', component: SpeakerDetailComponent }
 ];
 
 @NgModule({
