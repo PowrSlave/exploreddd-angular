@@ -28,7 +28,7 @@ export class SpeakerDetailComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.dataService.getSpeakers().pipe(takeUntil(this.destroy$)).subscribe((data: any[])=>{
-      //console.log(data);
+      console.log(data);
       this.speakers = data;
 
       //lowercase first and last name for easier string comparison below
@@ -43,7 +43,7 @@ export class SpeakerDetailComponent implements OnInit, OnDestroy {
         this.splitNameParam = this.speakerParam.split("-");
         this.splitFirstName = this.splitNameParam[0];
         this.splitLastName = this.splitNameParam[1];
-        console.log(`${this.splitFirstName} ${this.splitLastName}`);
+        //console.log(`${this.splitFirstName} ${this.splitLastName}`);
 
         this.speaker=this.speakers.find(s => s.firstName==this.splitFirstName && s.lastName==this.splitLastName);
       });

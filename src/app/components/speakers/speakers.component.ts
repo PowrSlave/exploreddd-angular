@@ -20,6 +20,7 @@ export class SpeakersComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.dataService.getSpeakers().pipe(takeUntil(this.destroy$)).subscribe((data: any[])=>{
       this.speakers = data;
+
       this.speakers.forEach(function(obj) {
         obj.linkParam = `${obj.firstName}-${obj.lastName}`
         obj.linkParam = obj.linkParam.toLowerCase();

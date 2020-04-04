@@ -167,19 +167,6 @@ body {
 	}
 }
 
-p, ul, ol, blockquote, h1, h2, h3, .video-responsive {
-	margin-bottom: $standard-margin;
-}
-
-ul {
-	li {
-		margin-bottom: 10px;
-	}
-	li:last-child {
-		margin-bottom: 0;
-	}
-}
-
 // Navigation
 
 nav {
@@ -409,6 +396,19 @@ nav {
       //left: 10px;
     }
   }
+}
+
+p, ul, ol, blockquote, h1, h2, h3, .video-responsive {
+	margin-bottom: $standard-margin;
+}
+
+ul {
+	li {
+		margin-bottom: 10px;
+	}
+	li:last-child {
+		margin-bottom: 0;
+	}
 }
 
 //Hero image banners base style (image url handled individually)
@@ -989,7 +989,8 @@ h2.conference-emphasis {
 
 .speaker-page-img {
 	height: 150px;
-	width: 150px;
+  width: 150px;
+  border-radius: 100px;
 }
 
 .speaker-header {
