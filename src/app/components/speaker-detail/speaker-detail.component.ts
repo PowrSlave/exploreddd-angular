@@ -33,9 +33,10 @@ export class SpeakerDetailComponent implements OnInit, OnDestroy {
 
       this.speakers = data.speakers;
       this.sessions = data.sessions;
+      this.categories = data.categories[0].items;
 
-      console.log(this.speakers);
-      console.log(this.sessions);
+      // console.log(this.speakers);
+      // console.log(this.sessions);
 
       //lets make the name properties lowercase for easier matching
       this.speakers.forEach(s => {
@@ -59,14 +60,23 @@ export class SpeakerDetailComponent implements OnInit, OnDestroy {
         var re = new RegExp(find, 'g');
         this.speaker.bio = this.speaker.bio.replace(re, '</p><p>');
 
-        //Now lettuce display the leafy greens of the speaker's sessions below
+        //Now lettuce process the leafy greens of the speaker's sessions below
 
         let speakerId = this.speaker.id;
 
-        let newArray = this.sessions.filter(function (el) {
-          return el.speakers.find(s => s==speakerId);
+        let speakerSessions = this.sessions.filter(function (item) {
+          return item.speakers.find(s => s==speakerId);
         });
-        console.log(newArray);
+
+        console.log(speakerSessions);
+
+        speakerSessions.forEach(session => {
+          session.type = this.categories.filter(function(item) {
+            return item.id==session.categoryItems[0];
+          });
+        });
+
+        console.log(speakerSessions); //speaker sessions with category id keyed to title but its being assigned a whole object so maybe just get the value?
 
       });
 

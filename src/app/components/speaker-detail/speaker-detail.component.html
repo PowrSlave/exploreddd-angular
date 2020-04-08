@@ -7,7 +7,7 @@
       <h1 class="speaker-header">{{speaker.firstName}} {{speaker.lastName}}</h1>
       <span class="speaker-subtitle">{{speaker.tagLine}}</span>
       <p><a class="speaker-handle" href="https://twitter.com/" target="_blank">@handle</a></p>
-      <p>{{speaker.bio}}</p>
+      <span [innerHTML]="speaker.bio"></span>
 
 
       <h2>Hands-On Session</h2>
