@@ -27,11 +27,17 @@ export class SpeakerDetailComponent implements OnInit, OnDestroy {
   splitLastName;
 
   ngOnInit() {
-    this.dataService.getSpeakers().pipe(takeUntil(this.destroy$)).subscribe((data: any[])=>{
-      console.log(data);
-      this.speakers = data;
+    this.dataService.getAllData().pipe(takeUntil(this.destroy$)).subscribe((data: any[])=>{
 
-      //lowercase first and last name for easier string comparison below
+      console.log(data);
+
+      this.speakers = data.speakers;
+      this.sessions = data.sessions;
+
+      console.log(this.speakers);
+      console.log(this.sessions);
+
+      //lets make the name properties lowercase for easier matching
       this.speakers.forEach(s => {
         s.firstName = s.firstName.toLowerCase();
         s.lastName = s.lastName.toLowerCase();
@@ -43,13 +49,30 @@ export class SpeakerDetailComponent implements OnInit, OnDestroy {
         this.splitNameParam = this.speakerParam.split("-");
         this.splitFirstName = this.splitNameParam[0];
         this.splitLastName = this.splitNameParam[1];
-        //console.log(`${this.splitFirstName} ${this.splitLastName}`);
 
+        //grab the speaker we seek. This is the whole magic(tm) for the speaker-detail component logic
         this.speaker=this.speakers.find(s => s.firstName==this.splitFirstName && s.lastName==this.splitLastName);
+
+        //add opening p tag to bio
+        this.speaker.bio = '<p>' + this.speaker.bio + '</p>';
+        let find = '\r\n\r';
+        var re = new RegExp(find, 'g');
+        this.speaker.bio = this.speaker.bio.replace(re, '</p><p>');
+
+        //Now lettuce display the leafy greens of the speaker's sessions below
+
+        let speakerId = this.speaker.id;
+
+        let newArray = this.sessions.filter(function (el) {
+          return el.speakers.find(s => s==speakerId);
+        });
+        console.log(newArray);
+
       });
 
     })
   }
+
   ngOnDestroy() {
     this.destroy$.next(true);
     // Unsubscribe from the subject

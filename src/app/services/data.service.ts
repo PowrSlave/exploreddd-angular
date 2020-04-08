@@ -9,8 +9,9 @@ import { retry, catchError } from 'rxjs/operators';
 
 export class DataService {
 
-  speakersEndPointUrl = "https://sessionize.com/api/v2/75tc7uhn/view/Speakers";
+  speakersEndPointUrl = 'https://sessionize.com/api/v2/75tc7uhn/view/Speakers';
   scheduleEndpointUrl = 'https://sessionize.com/api/v2/lrqa96hc/view/GridSmart';
+  allDataEndpointUrl =  'https://sessionize.com/api/v2/75tc7uhn/view/All';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -33,6 +34,10 @@ export class DataService {
 
   getSchedule() {
     return this.httpClient.get(this.scheduleEndpointUrl).pipe(retry(3),catchError(this.handleError));
+  }
+
+  getAllData() {
+    return this.httpClient.get(this.allDataEndpointUrl).pipe(retry(3),catchError(this.handleError));
   }
 
 }
