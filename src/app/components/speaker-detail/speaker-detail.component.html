@@ -9,12 +9,13 @@
       <p><a class="speaker-handle" href="https://twitter.com/" target="_blank">@handle</a></p>
       <span [innerHTML]="speaker.bio"></span>
 
+      <div *ngFor="let session of speakerSessions;">
+        <h2>{{session.type[0].name}}</h2>
+        <h2 class="gold">{{session.title}}</h2>
+        <!--<p>Co-presented with <a href="paul-rayner.html">Paul Rayner</a></p>-->
+        <span [innerHTML]="session.description"></span>
+      </div>
 
-      <h2>Hands-On Session</h2>
-      <h2 class="gold">EventStorming Race</h2>
-      <p>Co-presented with <a href="paul-rayner.html">Paul Rayner</a></p>
-      <p>Experience the dynamics of a Big Picture EventStorming by modeling a real-world complexity system, team vs team.</p>
-      <p>It will be messy, loud, chaotic and entertaining. And addictive too!</p>
     </div>
   </div>
 </div>

@@ -29,7 +29,7 @@ export class SpeakerDetailComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.dataService.getAllData().pipe(takeUntil(this.destroy$)).subscribe((data: any[])=>{
 
-      console.log(data);
+      // console.log(data);
 
       this.speakers = data.speakers;
       this.sessions = data.sessions;
@@ -54,31 +54,70 @@ export class SpeakerDetailComponent implements OnInit, OnDestroy {
         //grab the speaker we seek. This is the whole magic(tm) for the speaker-detail component logic
         this.speaker=this.speakers.find(s => s.firstName==this.splitFirstName && s.lastName==this.splitLastName);
 
-        //add opening p tag to bio
-        this.speaker.bio = '<p>' + this.speaker.bio + '</p>';
-        let find = '\r\n\r';
-        var re = new RegExp(find, 'g');
-        this.speaker.bio = this.speaker.bio.replace(re, '</p><p>');
-
-        //Now lettuce process the leafy greens of the speaker's sessions below
-
-        let speakerId = this.speaker.id;
-
-        let speakerSessions = this.sessions.filter(function (item) {
-          return item.speakers.find(s => s==speakerId);
-        });
-
-        console.log(speakerSessions);
-
-        speakerSessions.forEach(session => {
-          session.type = this.categories.filter(function(item) {
-            return item.id==session.categoryItems[0];
-          });
-        });
-
-        console.log(speakerSessions); //speaker sessions with category id keyed to title but its being assigned a whole object so maybe just get the value?
-
       });
+
+      //add opening p tag to speaker bio
+      this.speaker.bio = '<p>' + this.speaker.bio + '</p>';
+      let find = '\r\n\r';
+      var re = new RegExp(find, 'g');
+      this.speaker.bio = this.speaker.bio.replace(re, '</p><p>');
+
+
+
+      //Now lettuce process the leafy greens of the speaker's sessions below
+
+      let speakerId = this.speaker.id;
+
+      this.speakerSessions = this.sessions.filter(function (item) {
+        return item.speakers.find(s => s==speakerId);
+      });
+
+      this.speakerSessions.forEach(session => {
+        session.type = this.categories.filter(function(item) {
+          return item.id==session.categoryItems[0];
+        });
+      });
+
+      this.speakerSessions.forEach(session => {
+        switch(session.type[0].name) {
+          case 'keynote':
+            session.type[0].contentOrder = 1;
+            break;
+          case 'two-day-workshop':
+            session.type[0].contentOrder = 2;
+            break;
+          case 'one-day-workshop':
+            session.type[0].contentOrder = 3;
+            break;
+          case 'hands-on-session':
+            session.type[0].contentOrder = 4;
+            break;
+          case 'talk':
+            session.type[0].contentOrder = 5;
+            break;
+        }
+      });
+
+      console.log(this.speakerSessions);
+
+      //add paragraphs to session descriptions
+      this.speakerSessions.forEach(sesh => {
+        sesh.description = '<p>' + sesh.description + '</p>';
+        // let find = '\r\n\r';
+        var re = new RegExp('\r\n\r', 'g');
+        sesh.description = sesh.description.replace(re, '</this.sesh.description><p>');
+      });
+
+      // this.speakerSessions[0].description = '<p>' + this.speakerSessions[0].description + '</p>';
+      // let find2 = '\r\n\r';
+      // var re = new RegExp(find2, 'g');
+      // this.speakerSessions[0].description = this.speakerSessions[0].description.replace(re, '</p><p>');
+
+      //sort here
+      //this.speakerSessions.sort((a, b) => (a.type[0].contentOrder > b.type[0].contentOrder) ? 1 : -1);
+      //speakerSessions.sort((a, b) => (a.title > b.title) ? 1 : -1);
+
+      console.log(this.speakerSessions);
 
     })
   }
