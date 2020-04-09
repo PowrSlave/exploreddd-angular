@@ -15,6 +15,8 @@ export class SpeakerDetailComponent implements OnInit, OnDestroy {
   speakers:Array<any>;
   destroy$: Subject<boolean> = new Subject<boolean>();
 
+  speakerSessions:Array<any>;
+
   constructor(private dataService: DataService,
               private route: ActivatedRoute
               ) {
@@ -28,15 +30,10 @@ export class SpeakerDetailComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.dataService.getAllData().pipe(takeUntil(this.destroy$)).subscribe((data: any[])=>{
-
       // console.log(data);
-
       this.speakers = data.speakers;
       this.sessions = data.sessions;
       this.categories = data.categories[0].items;
-
-      // console.log(this.speakers);
-      // console.log(this.sessions);
 
       //lets make the name properties lowercase for easier matching
       this.speakers.forEach(s => {
@@ -61,8 +58,6 @@ export class SpeakerDetailComponent implements OnInit, OnDestroy {
       let find = '\r\n\r';
       var re = new RegExp(find, 'g');
       this.speaker.bio = this.speaker.bio.replace(re, '</p><p>');
-
-
 
       //Now lettuce process the leafy greens of the speaker's sessions below
 
@@ -108,12 +103,7 @@ export class SpeakerDetailComponent implements OnInit, OnDestroy {
         sesh.description = sesh.description.replace(re, '</this.sesh.description><p>');
       });
 
-      // this.speakerSessions[0].description = '<p>' + this.speakerSessions[0].description + '</p>';
-      // let find2 = '\r\n\r';
-      // var re = new RegExp(find2, 'g');
-      // this.speakerSessions[0].description = this.speakerSessions[0].description.replace(re, '</p><p>');
-
-      //sort here
+      //sort here to get the page appearance order correct
       //this.speakerSessions.sort((a, b) => (a.type[0].contentOrder > b.type[0].contentOrder) ? 1 : -1);
       //speakerSessions.sort((a, b) => (a.title > b.title) ? 1 : -1);
 
