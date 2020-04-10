@@ -37,7 +37,13 @@ export class DataService {
   }
 
   getAllData() {
-    return this.httpClient.get(this.allDataEndpointUrl).pipe(retry(3),catchError(this.handleError));
+    return this.httpClient.get<Config>(this.allDataEndpointUrl).pipe(retry(3),catchError(this.handleError));
   }
 
+}
+
+export interface Config {
+  sessions: Array<any>;
+  speakers: Array<any>;
+  categories: Array<any>;
 }

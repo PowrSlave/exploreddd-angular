@@ -3,6 +3,7 @@ import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { DataService } from '../../services/data.service';
+import { Config } from '../../services/data.service';
 
 @Component({
   selector: 'app-speaker-detail',
@@ -12,7 +13,12 @@ import { DataService } from '../../services/data.service';
 })
 export class SpeakerDetailComponent implements OnInit, OnDestroy {
 
+  config: Config;
   speakers:Array<any>;
+  sessions:Array<any>;
+  categories:Array<any>; // 'Keynote', 'Two Day Workshop', etc
+
+
   destroy$: Subject<boolean> = new Subject<boolean>();
 
   speakerSessions:Array<any>;
@@ -29,7 +35,7 @@ export class SpeakerDetailComponent implements OnInit, OnDestroy {
   splitLastName;
 
   ngOnInit() {
-    this.dataService.getAllData().pipe(takeUntil(this.destroy$)).subscribe((data: any[])=>{
+    this.dataService.getAllData().pipe(takeUntil(this.destroy$)).subscribe((data: Config)=>{
       // console.log(data);
       this.speakers = data.speakers;
       this.sessions = data.sessions;
@@ -75,25 +81,23 @@ export class SpeakerDetailComponent implements OnInit, OnDestroy {
 
       this.speakerSessions.forEach(session => {
         switch(session.type[0].name) {
-          case 'keynote':
+          case 'Keynote':
             session.type[0].contentOrder = 1;
             break;
-          case 'two-day-workshop':
+          case 'Two Day Workshop':
             session.type[0].contentOrder = 2;
             break;
-          case 'one-day-workshop':
+          case 'One Day Workshop':
             session.type[0].contentOrder = 3;
             break;
-          case 'hands-on-session':
+          case 'Hands-On Session':
             session.type[0].contentOrder = 4;
             break;
-          case 'talk':
+          case 'Talk':
             session.type[0].contentOrder = 5;
             break;
         }
       });
-
-      console.log(this.speakerSessions);
 
       //add paragraphs to session descriptions
       this.speakerSessions.forEach(sesh => {
@@ -104,8 +108,7 @@ export class SpeakerDetailComponent implements OnInit, OnDestroy {
       });
 
       //sort here to get the page appearance order correct
-      //this.speakerSessions.sort((a, b) => (a.type[0].contentOrder > b.type[0].contentOrder) ? 1 : -1);
-      //speakerSessions.sort((a, b) => (a.title > b.title) ? 1 : -1);
+      this.speakerSessions.sort((a, b) => (a.type[0].contentOrder > b.type[0].contentOrder) ? 1 : -1);
 
       console.log(this.speakerSessions);
 
