@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { DataService } from '../../services/data.service';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { DataService } from '../../services/data.service';
 
 declare var jQuery: any;
 
@@ -14,8 +14,7 @@ declare var jQuery: any;
 export class HomeComponent implements OnInit, OnDestroy {
 
   speakers:Array<any>;
-  //speakers = [];
-  topSpeakers = [];
+  topSpeakers:Array<any>;
   destroy$: Subject<boolean> = new Subject<boolean>();
 
   constructor(private dataService: DataService) { }
@@ -48,7 +47,15 @@ export class HomeComponent implements OnInit, OnDestroy {
       console.log(data);
       this.speakers = data;
 
+      //this logic is repeated in the speakers page. Perhaps make it a reusable utility function?
+      this.speakers.forEach(function(obj) {
+        obj.linkParam = `${obj.firstName}-${obj.lastName}`
+        obj.linkParam = obj.linkParam.toLowerCase();
+      })
+
       this.topSpeakers = this.speakers.filter(speaker => speaker.isTopSpeaker);
+
+      console.log(this.topSpeakers);
       console.log(this.topSpeakers);
     });
 

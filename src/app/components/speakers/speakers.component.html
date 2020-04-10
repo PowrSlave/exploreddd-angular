@@ -4,7 +4,7 @@
       <div class="col-lg-12">
         <h1 class="text-center">Speakers</h1>
         <div class="row">
-          <div class="speaker-container" li *ngFor="let speaker of speakers">
+          <div class="speaker-container" *ngFor="let speaker of speakers">
             <a [routerLink]="['/speakers',speaker.linkParam]"><img src={{speaker.profilePicture}}></a>
             <h3><a class="speaker-name"[routerLink]="['/speakers',speaker.linkParam]">{{speaker.fullName}}</a></h3>
             <p class="speaker-details">{{speaker.tagLine}}</p>

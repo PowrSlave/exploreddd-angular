@@ -69,16 +69,16 @@
         <h1 class="text-center">Keynote Speakers</h1>
         <div class="row">
           <div class="speaker-container" li *ngFor="let topSpeaker of topSpeakers">
-            <a href="#"><img src={{topSpeaker.profilePicture}}></a>
-            <h3><a class="speaker-name" href="#">{{topSpeaker.fullName}}</a></h3>
+            <a [routerLink]="['/speakers',topSpeaker.linkParam]"><img src={{topSpeaker.profilePicture}}></a>
+            <h3><a class="speaker-name" [routerLink]="['/speakers',topSpeaker.linkParam]">{{topSpeaker.fullName}}</a></h3>
             <p class="speaker-details">{{topSpeaker.tagLine}}</p>
           </div>
         </div>
         <h1 class="text-center">Featured Speakers</h1>
         <div class="row">
           <div class="speaker-container" li *ngFor="let speaker of speakers">
-            <a href="#"><img src={{speaker.profilePicture}}></a>
-            <h3><a class="speaker-name" href="#">{{speaker.fullName}}</a></h3>
+            <a [routerLink]="['/speakers',speaker.linkParam]"><img src={{speaker.profilePicture}}></a>
+            <h3><a class="speaker-name" [routerLink]="['/speakers',speaker.linkParam]">{{speaker.fullName}}</a></h3>
             <p class="speaker-details">{{speaker.tagLine}}</p>
           </div>
         </div>
