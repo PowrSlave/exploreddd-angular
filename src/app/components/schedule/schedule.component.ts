@@ -21,15 +21,13 @@ export class ScheduleComponent implements OnInit, OnDestroy {
     //trust the async loaded script pulled in via a static page nested in an iframe *sheesh*
     this.urlSafe= this.sanitizer.bypassSecurityTrustResourceUrl(this.url);
 
-    const myIframe = document.getElementById("myIframe");
+    const myIframe = <HTMLIFrameElement>document.getElementById("myIframe");
       myIframe.onload = () => {
         var myTimeout = setInterval(function() {
           const dynamicElement = myIframe.contentWindow.document.getElementById("sessionize");
           if (myIframe.contentWindow.document.body.contains(dynamicElement)) {
             console.log('sessionize has emerged!');
             console.log(dynamicElement);
-            //console.log(myIframe.contentWindow.document.getElementById("sessionize").offsetHeight);
-            // let myIframeHeight = myIframe.contentWindow.document.body.clientHeight+'px';
             console.log( jQuery('#myIframe').contents().height() + ' is the height' );
             let myIframeHeight = jQuery('#myIframe').contents().height() + 500 + 'px'; //adding 500? eww.
             //console.log(myIframeHeight);
