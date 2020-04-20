@@ -12,6 +12,7 @@ export class DataService {
   speakersEndPointUrl = 'https://sessionize.com/api/v2/75tc7uhn/view/Speakers';
   scheduleEndpointUrl = 'https://sessionize.com/api/v2/lrqa96hc/view/GridSmart';
   allDataEndpointUrl =  'https://sessionize.com/api/v2/75tc7uhn/view/All';
+  allDataEndpointUrlMock = 'http://localhost:3000';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -38,6 +39,9 @@ export class DataService {
 
   getAllData() {
     return this.httpClient.get<Config>(this.allDataEndpointUrl).pipe(retry(3),catchError(this.handleError));
+  }
+  getAllDataLocalMock() {
+    return this.httpClient.get<Config>(this.allDataEndpointUrlMock).pipe(retry(3),catchError(this.handleError));
   }
 
 }

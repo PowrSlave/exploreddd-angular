@@ -13,13 +13,17 @@ import { Config } from '../../services/data.service';
 
 export class ScheduleComponent implements OnInit, OnDestroy {
 
-
+  sessions:Array<any>;
   destroy$: Subject<boolean> = new Subject<boolean>();
 
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
     this.dataService.getAllData().pipe(takeUntil(this.destroy$)).subscribe((data: Config)=>{
+      console.log(data);
+    });
+
+    this.dataService.getAllDataLocalMock().pipe(takeUntil(this.destroy$)).subscribe((data: Config)=>{
       console.log(data);
     });
   }
