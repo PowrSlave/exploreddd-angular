@@ -1152,6 +1152,10 @@ h2.conference-emphasis {
 }
 
 //Schedule page
+
+#scheduleIframe {
+  margin-bottom: $standard-margin;
+}
 .schedule {
   width: 100%;
   padding-top: $standard-margin + 10px; //this needs polished

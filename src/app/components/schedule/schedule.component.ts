@@ -21,21 +21,57 @@ export class ScheduleComponent implements OnInit, OnDestroy {
     //trust the async loaded script pulled in via a static page nested in an iframe *sheesh*
     this.urlSafe= this.sanitizer.bypassSecurityTrustResourceUrl(this.url);
 
-    const myIframe = <HTMLIFrameElement>document.getElementById("myIframe");
-      myIframe.onload = () => {
-        var myTimeout = setInterval(function() {
-          const dynamicElement = myIframe.contentWindow.document.getElementById("sessionize");
-          if (myIframe.contentWindow.document.body.contains(dynamicElement)) {
-            console.log('sessionize has emerged!');
-            console.log(dynamicElement);
-            console.log( jQuery('#myIframe').contents().height() + ' is the height' );
-            let myIframeHeight = jQuery('#myIframe').contents().height() + 500 + 'px'; //adding 500? eww.
-            //console.log(myIframeHeight);
-            document.getElementById("myIframe").style.height = myIframeHeight;
-            clearInterval(myTimeout);
-          }
-        }, 100);
-      }
+    /*
+    Once IFRAME is loaded, poll for a known/expected tag to appear from the async load via sessionize endpoint
+    */
+
+   const scheduleIframe = <HTMLIFrameElement>document.getElementById("scheduleIframe");
+
+    scheduleIframe.onload = () => {
+      let myTimeout = setInterval(function() {
+        const dynamicElement = scheduleIframe.contentWindow.document.getElementById("sessionize");
+        if (scheduleIframe.contentWindow.document.body.contains(dynamicElement)) {
+          setTimeout(function(){
+            let innerWindow = document.getElementsByTagName( 'iframe' )[ 0 ].contentWindow,
+            innerElem = innerWindow.document.querySelector('#sessionize');
+            let compStyles = innerWindow.getComputedStyle( innerElem, null );
+            let randomStySty = 'the elements height claims to be ' + compStyles.getPropertyValue('height');
+            console.log(randomStySty);
+            document.getElementById("scheduleIframe").style.height = compStyles.getPropertyValue('height');
+          }, 1000);
+
+          //onresize, adjust IFRAME height
+          jQuery(window).resize(function() {
+            console.log('you resized the window!');
+            let innerWindow = document.getElementsByTagName( 'iframe' )[ 0 ].contentWindow,
+            innerElem = innerWindow.document.querySelector('#sessionize');
+            let compStyles = innerWindow.getComputedStyle( innerElem, null );
+            let randomStySty = 'the elements height claims to be ' + compStyles.getPropertyValue('height');
+            console.log(randomStySty);
+            document.getElementById("scheduleIframe").style.height = compStyles.getPropertyValue('height');
+          });
+
+          //Adjust IFRAME height when a schedule button (Wednesday, Thursday, etc) is clicked.
+          jQuery('#scheduleIframe').contents().find('.sz-tabs__link').click(function(){
+            console.log('you clicked the button!');
+            let innerWindow = document.getElementsByTagName( 'iframe' )[ 0 ].contentWindow,
+            innerElem = innerWindow.document.querySelector('#sessionize');
+            let compStyles = innerWindow.getComputedStyle( innerElem, null );
+            let randomStySty = 'the elements height claims to be ' + compStyles.getPropertyValue('height');
+            console.log(randomStySty);
+            document.getElementById("scheduleIframe").style.height = compStyles.getPropertyValue('height');
+
+          });
+
+          //a utility function to resize the iframe that can be called whenever needed
+          function adjustIframeHeight() {
+
+          };
+
+          clearInterval(myTimeout);
+        }
+      }, 100);
+    }
   }
 
   ngOnDestroy() {
