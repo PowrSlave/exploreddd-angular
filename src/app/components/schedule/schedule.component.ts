@@ -32,41 +32,33 @@ export class ScheduleComponent implements OnInit, OnDestroy {
         const dynamicElement = scheduleIframe.contentWindow.document.getElementById("sessionize");
         if (scheduleIframe.contentWindow.document.body.contains(dynamicElement)) {
           setTimeout(function(){
-            let innerWindow = document.getElementsByTagName( 'iframe' )[ 0 ].contentWindow,
-            innerElem = innerWindow.document.querySelector('#sessionize');
-            let compStyles = innerWindow.getComputedStyle( innerElem, null );
-            let randomStySty = 'the elements height claims to be ' + compStyles.getPropertyValue('height');
-            console.log(randomStySty);
-            document.getElementById("scheduleIframe").style.height = compStyles.getPropertyValue('height');
+            adjustIframeHeight();
           }, 1000);
 
           //onresize, adjust IFRAME height
           jQuery(window).resize(function() {
-            console.log('you resized the window!');
-            let innerWindow = document.getElementsByTagName( 'iframe' )[ 0 ].contentWindow,
-            innerElem = innerWindow.document.querySelector('#sessionize');
-            let compStyles = innerWindow.getComputedStyle( innerElem, null );
-            let randomStySty = 'the elements height claims to be ' + compStyles.getPropertyValue('height');
-            console.log(randomStySty);
-            document.getElementById("scheduleIframe").style.height = compStyles.getPropertyValue('height');
+            adjustIframeHeight();
           });
 
           //Adjust IFRAME height when a schedule button (Wednesday, Thursday, etc) is clicked.
           jQuery('#scheduleIframe').contents().find('.sz-tabs__link').click(function(){
-            console.log('you clicked the button!');
-            let innerWindow = document.getElementsByTagName( 'iframe' )[ 0 ].contentWindow,
-            innerElem = innerWindow.document.querySelector('#sessionize');
-            let compStyles = innerWindow.getComputedStyle( innerElem, null );
-            let randomStySty = 'the elements height claims to be ' + compStyles.getPropertyValue('height');
-            console.log(randomStySty);
-            document.getElementById("scheduleIframe").style.height = compStyles.getPropertyValue('height');
-
+            adjustIframeHeight();
           });
 
           //a utility function to resize the iframe that can be called whenever needed
           function adjustIframeHeight() {
-
+            let innerWindow = document.getElementsByTagName( 'iframe' )[ 0 ].contentWindow,
+            innerElem = innerWindow.document.querySelector('#sessionize');
+            let compStyles = innerWindow.getComputedStyle( innerElem, null );
+            //let randomStySty = 'the elements height claims to be ' + compStyles.getPropertyValue('height');
+            //console.log(randomStySty);
+            document.getElementById("scheduleIframe").style.height = compStyles.getPropertyValue('height');
           };
+
+          //modal needs repositioning after it opens
+          jQuery('#scheduleIframe').contents().find('.sz-session__title a').click(function(){
+            console.log('modal trigger...triggered');
+          });
 
           clearInterval(myTimeout);
         }
