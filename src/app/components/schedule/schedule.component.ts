@@ -28,7 +28,7 @@ export class ScheduleComponent implements OnInit, OnDestroy {
    const scheduleIframe = <HTMLIFrameElement>document.getElementById("scheduleIframe");
 
     scheduleIframe.onload = () => {
-      let myTimeout = setInterval(function() {
+      let sessionizeLoadedInterval = setInterval(function() {
         const dynamicElement = scheduleIframe.contentWindow.document.getElementById("sessionize");
         if (scheduleIframe.contentWindow.document.body.contains(dynamicElement)) {
           setTimeout(function(){
@@ -58,9 +58,32 @@ export class ScheduleComponent implements OnInit, OnDestroy {
           //modal needs repositioning after it opens
           jQuery('#scheduleIframe').contents().find('.sz-session__title a').click(function(){
             console.log('modal trigger...triggered');
+            console.log(`iframe scroll position is ${document.getElementsByTagName('iframe')[0].contentWindow.pageYOffset}`);
+
+            let modalContainerInterval = setInterval(function() {
+              const modalElem = scheduleIframe.contentWindow.document.querySelector(".sz-modal-container-inner");
+              if (scheduleIframe.contentWindow.document.body.contains(modalElem)) {
+                console.log('modal is available');
+                let rect = modalElem.getBoundingClientRect();
+                for (var key in rect) {
+                  if(typeof rect[key] !== 'function') {
+                    console.log(`${ key } : ${ rect[key] }`);
+                  }
+                }
+                clearInterval(modalContainerInterval);
+              }
+            }, 100);
+
+            repositionIframeModal();
+
           });
 
-          clearInterval(myTimeout);
+          //a utility function to reposition the schedule modals that appear in the schedule iframe
+          function repositionIframeModal() {
+            //repositioning of modal will go in here
+          };
+
+          clearInterval(sessionizeLoadedInterval);
         }
       }, 100);
     }
