@@ -1152,6 +1152,45 @@ h2.conference-emphasis {
 }
 
 //Schedule page
+
+#flexSchedule {
+  display: flex;
+  flex-wrap: wrap;
+  .session-item {
+    width: 300px;
+    padding: $half-margin;
+    h4 {
+      color: $brand-white;
+      font-family: NunitoSansBold, sans-serif;
+    }
+    p {
+      color: $brand-white;
+      font-family: NunitoSansBold, sans-serif;
+    }
+    a {
+      color: $brand-white;
+      &:hover {
+        color: #fdc33c;
+        text-decoration: none;
+        cursor: pointer;
+        cursor: hand;
+      }
+    }
+  }
+  .gold {
+    background-color: #e6a62d;
+  }
+  .green {
+    background-color: #2ea165;
+  }
+  .purple {
+    background-color: #682c89;
+  }
+  .blue {
+    background-color: $brand-blue;
+  }
+}
+
 .schedule {
   width: 100%;
   padding-top: $standard-margin + 10px; //this needs polished

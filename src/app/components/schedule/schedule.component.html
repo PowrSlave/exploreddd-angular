@@ -7,16 +7,40 @@
       </p>
       <p>The conference program committee is currently in the process of reviewing session proposals. Please check back later for the schedule.</p>
     </div>
-
   </div>
+
+  <!-- an attempt will be made -->
+  <div class="row">
+    <div class="col-xs-12">
+      <div id="flexSchedule">
+        <div class="session-item {{ session.track }}" *ngFor="let session of sessions">
+          <h4><a data-toggle="modal" data-target="#myModal">{{ session.speakers[0].fullName }}</a></h4>
+          <p><a data-toggle="modal" data-target="#myModal">{{ session.title }}</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end attempt-->
+
   <div class="row">
     <div class="col-xs-12">
       <h1 class="text-center">Schedule</h1>
       <div class="buttons">
-        <!--<a class="showSingle btn schedule-btn" target="1">
-          <span class="btn-title">Workshops</span>
-          <span class="btn-date">September 10 - 12</span>
-        </a>-->
         <a href="../workshops" class="showSingle btn schedule-btn">
           <span class="btn-title">Workshops</span>
           <span class="btn-date">September 16 - 18</span>
