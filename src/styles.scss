@@ -1157,8 +1157,9 @@ h2.conference-emphasis {
   display: flex;
   flex-wrap: wrap;
   .session-item {
-    width: 250px;
+    width: 232px; //adjust this as needed for responsivity
     padding: $half-margin;
+    margin-bottom: $standard-margin;
     h4 {
       color: $brand-white;
       font-family: NunitoSansBold, sans-serif;

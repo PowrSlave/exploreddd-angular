@@ -75,6 +75,23 @@ export class ScheduleComponent implements OnInit, OnDestroy {
         ]
       },
       {
+        "title": "Why I Made the Internet",
+        "description": "Keynote description placeholder text",
+        "format": "Keynote",
+        "startsAt": "2020-09-19T09:45:00",
+        "endsAt": "2020-09-18T09:45:00",
+        "track": "blue",
+        "isServiceSession": false,
+        "speakers": [
+          {
+            "fullName": "Al Gore",
+            "tagLine": "Another Speaker Tagline",
+            "bio": "Another Speaker bio placeholder",
+            "profilePicture": "https://sessionize.com/image?f=c60d0ef66e02ee405bbe89ef29b7f626,400,400,1,0,test5.jpg",
+          }
+        ]
+      },
+      {
         "title": "Sociotechnical DDD",
         "description": "Sociotechnical description placeholder text",
         "format": "Talk",
@@ -120,6 +137,23 @@ export class ScheduleComponent implements OnInit, OnDestroy {
           {
             "fullName": "Dr. Speaker Speakalot II",
             "tagLine": "Dr. Speaker Speakalots Tagline",
+            "bio": "Dr. Speaker Speakalots bio placeholder",
+            "profilePicture": "https://sessionize.com/image?f=c60d0ef66e02ee405bbe89ef29b7f626,400,400,1,0,test7.jpg",
+          }
+        ]
+      },
+      {
+        "title": "I'm a Builder of Great Tools, Not a Usability Expert!",
+        "description": "some description",
+        "format": "Talk",
+        "startsAt": "2020-09-19T09:00:00",
+        "endsAt": "2020-09-18T09:45:00",
+        "track": "blue",
+        "isServiceSession": false,
+        "speakers": [
+          {
+            "fullName": "Linus Torvalds",
+            "tagLine": "I need no tagline",
             "bio": "Dr. Speaker Speakalots bio placeholder",
             "profilePicture": "https://sessionize.com/image?f=c60d0ef66e02ee405bbe89ef29b7f626,400,400,1,0,test7.jpg",
           }
