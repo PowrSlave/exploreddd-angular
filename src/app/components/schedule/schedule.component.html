@@ -9,33 +9,63 @@
     </div>
   </div>
 
-  <!-- an attempt will be made -->
   <div class="row">
     <div class="col-xs-12">
       <div id="flexSchedule">
         <div class="session-item {{ session.track }}" *ngFor="let session of sessions">
-          <h4><a data-toggle="modal" data-target="#myModal">{{ session.speakers[0].fullName }}</a></h4>
-          <p><a data-toggle="modal" data-target="#myModal">{{ session.title }}</a></p>
+          <h4>
+            <a
+              data-toggle="modal"
+              data-target="#speakerModal"
+              [attr.data-speaker-name]="session.speakers[0].fullName"
+              [attr.data-speaker-profile-picture]="session.speakers[0].profilePicture"
+              [attr.data-speaker-bio]="session.speakers[0].bio">
+              {{ session.speakers[0].fullName }}
+            </a>
+            </h4>
+            <p>
+              <a
+              data-toggle="modal"
+              data-target="#sessionModal"
+              [attr.data-speaker-name]="session.speakers[0].fullName"
+              [attr.data-session-title]="session.title"
+              [attr.data-session-description]="session.description"
+              >
+              {{ session.title }}
+            </a>
+          </p>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- Modal -->
-  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <!-- Speaker Modal -->
+  <div class="modal fade" id="speakerModal" tabindex="-1" role="dialog" aria-labelledby="speakerModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+          <img class="modal-speaker-profile-picture">
+          <h4 class="modal-title" id="speakerModalLabel">...</h4>
         </div>
-        <div class="modal-body">
-          ...
-        </div>
+        <div class="modal-body">...</div>
       </div>
     </div>
   </div>
-  <!-- end attempt-->
+
+    <!-- Session Modal -->
+    <div class="modal fade" id="sessionModal" tabindex="-1" role="dialog" aria-labelledby="sessionModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <p class="modal-speaker-name">...</p>
+            <h4 class="modal-title" id="sessiomModalLabel">...</h4>
+          </div>
+          <div class="modal-body">...</div>
+        </div>
+      </div>
+    </div>
 
   <div class="row">
     <div class="col-xs-12">

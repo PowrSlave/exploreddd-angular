@@ -1157,7 +1157,7 @@ h2.conference-emphasis {
   display: flex;
   flex-wrap: wrap;
   .session-item {
-    width: 300px;
+    width: 250px;
     padding: $half-margin;
     h4 {
       color: $brand-white;
@@ -1188,6 +1188,14 @@ h2.conference-emphasis {
   }
   .blue {
     background-color: $brand-blue;
+  }
+}
+
+#speakerModal {
+  .modal-speaker-profile-picture {
+    height: 100px;
+    width: 100px;
+    border-radius: 100px;
   }
 }
 

@@ -5,6 +5,8 @@ import { Subject } from 'rxjs';
 import { Config } from '../../services/data.service';
 import * as moment from 'moment';
 
+declare var jQuery: any;
+
 @Component({
   selector: 'app-schedule',
   templateUrl: './schedule.component.html',
@@ -33,7 +35,8 @@ export class ScheduleComponent implements OnInit, OnDestroy {
           {
             "fullName": "Nick Tune",
             "tagLine": "Nick Tune Tagline",
-            "bio": "Nick Tune bio placeholder"
+            "bio": "Nick Tune bio placeholder",
+            "profilePicture": "https://sessionize.com/image?f=c60d0ef66e02ee405bbe89ef29b7f626,400,400,1,0,test1.jpg",
           }
         ]
       },
@@ -49,7 +52,8 @@ export class ScheduleComponent implements OnInit, OnDestroy {
           {
             "fullName": "Daniel Somerfield",
             "tagLine": "Daniel Somerfields Tagline",
-            "bio": "Daniel Somerfields bio placeholder"
+            "bio": "Daniel Somerfields bio placeholder",
+            "profilePicture": "https://sessionize.com/image?f=c60d0ef66e02ee405bbe89ef29b7f626,400,400,1,0,test3.jpg",
           }
         ]
       },
@@ -65,7 +69,8 @@ export class ScheduleComponent implements OnInit, OnDestroy {
           {
             "fullName": "Bigtime Speaker Pants",
             "tagLine": "Another Speaker Tagline",
-            "bio": "Another Speaker bio placeholder"
+            "bio": "Another Speaker bio placeholder",
+            "profilePicture": "https://sessionize.com/image?f=c60d0ef66e02ee405bbe89ef29b7f626,400,400,1,0,test5.jpg",
           }
         ]
       },
@@ -81,7 +86,8 @@ export class ScheduleComponent implements OnInit, OnDestroy {
           {
             "fullName": "Speaker McGee",
             "tagLine": "Speaker McGee Tagline",
-            "bio": "Speaker McGee bio placeholder"
+            "bio": "Speaker McGee bio placeholder",
+            "profilePicture": "https://sessionize.com/image?f=c60d0ef66e02ee405bbe89ef29b7f626,400,400,1,0,test8.jpg",
           }
         ]
       },
@@ -97,7 +103,8 @@ export class ScheduleComponent implements OnInit, OnDestroy {
           {
             "fullName": "Dr. Speaker Speakalot",
             "tagLine": "Dr. Speaker Speakalots Tagline",
-            "bio": "Dr. Speaker Speakalots bio placeholder"
+            "bio": "Dr. Speaker Speakalots bio placeholder",
+            "profilePicture": "https://sessionize.com/image?f=c60d0ef66e02ee405bbe89ef29b7f626,400,400,1,0,test2.jpg",
           }
         ]
       },
@@ -113,7 +120,8 @@ export class ScheduleComponent implements OnInit, OnDestroy {
           {
             "fullName": "Dr. Speaker Speakalot II",
             "tagLine": "Dr. Speaker Speakalots Tagline",
-            "bio": "Dr. Speaker Speakalots bio placeholder"
+            "bio": "Dr. Speaker Speakalots bio placeholder",
+            "profilePicture": "https://sessionize.com/image?f=c60d0ef66e02ee405bbe89ef29b7f626,400,400,1,0,test7.jpg",
           }
         ]
       }
@@ -129,6 +137,34 @@ export class ScheduleComponent implements OnInit, OnDestroy {
     //this.dataService.getAllData().pipe(takeUntil(this.destroy$)).subscribe((data: Config)=>{
       //console.log(data);
     //});
+
+    jQuery('#speakerModal').on('show.bs.modal', function (event) {
+      var button = jQuery(event.relatedTarget) // Button that triggered the modal
+      var speakerProfilePicture = button.data('speaker-profile-picture')
+      var speakerName = button.data('speaker-name')
+      var speakerBio = button.data('speaker-bio') // Extract info from data-* attributes
+      // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+      // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+      var modal = jQuery(this)
+      modal.find('.modal-speaker-profile-picture').attr("src",speakerProfilePicture)
+      console.log(speakerProfilePicture)
+      modal.find('.modal-title').text(speakerName)
+      modal.find('.modal-body').text(speakerBio)
+    })
+
+    jQuery('#sessionModal').on('show.bs.modal', function (event) {
+      var button = jQuery(event.relatedTarget) // Button that triggered the modal
+      var speakerName = button.data('speaker-name')
+      var sessionTitle = button.data('session-title')
+      var sessionDescription = button.data('session-description') // Extract info from data-* attributes
+      // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+      // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+      var modal = jQuery(this)
+      modal.find('.modal-speaker-name').text(speakerName)
+      modal.find('.modal-title').text(sessionTitle)
+      modal.find('.modal-body').text(sessionDescription)
+    })
+
 
 
   }
