@@ -19,158 +19,12 @@ export class ScheduleComponent implements OnInit, OnDestroy {
   //sessions:Array<any>;
   destroy$: Subject<boolean> = new Subject<boolean>();
 
-  now = moment('2020-09-18T11:45:00').format('h:mm'); //this is the format we want for the date column
-
-  data = {
-    "sessions": [
-      {
-        "title": "Sociotechnical DDD",
-        "description": "Sociotechnical description placeholder text",
-        "format": "Talk",
-        "startsAt": "2020-09-18T09:00:00",
-        "endsAt": "2020-09-18T09:45:00",
-        "track": "gold",
-        "isServiceSession": false,
-        "speakers": [
-          {
-            "fullName": "Nick Tune",
-            "tagLine": "Nick Tune Tagline",
-            "bio": "Nick Tune bio placeholder",
-            "profilePicture": "https://sessionize.com/image?f=c60d0ef66e02ee405bbe89ef29b7f626,400,400,1,0,test1.jpg",
-          }
-        ]
-      },
-      {
-        "title": "Domain-Driven Design in Data Engineering: a Journey of Application, Adaption, and Invention",
-        "description": "Daniels talk description",
-        "format": "Talk",
-        "startsAt": "2020-09-18T09:00:00",
-        "endsAt": "2020-09-18T09:45:00",
-        "track": "green",
-        "isServiceSession": false,
-        "speakers": [
-          {
-            "fullName": "Daniel Somerfield",
-            "tagLine": "Daniel Somerfields Tagline",
-            "bio": "Daniel Somerfields bio placeholder",
-            "profilePicture": "https://sessionize.com/image?f=c60d0ef66e02ee405bbe89ef29b7f626,400,400,1,0,test3.jpg",
-          }
-        ]
-      },
-      {
-        "title": "Best Talk Ever",
-        "description": "Keynote description placeholder text",
-        "format": "Keynote",
-        "startsAt": "2020-09-19T09:45:00",
-        "endsAt": "2020-09-18T09:45:00",
-        "track": "purple",
-        "isServiceSession": false,
-        "speakers": [
-          {
-            "fullName": "Bigtime Speaker Pants",
-            "tagLine": "Another Speaker Tagline",
-            "bio": "Another Speaker bio placeholder",
-            "profilePicture": "https://sessionize.com/image?f=c60d0ef66e02ee405bbe89ef29b7f626,400,400,1,0,test5.jpg",
-          }
-        ]
-      },
-      {
-        "title": "Why I Made the Internet",
-        "description": "Keynote description placeholder text",
-        "format": "Keynote",
-        "startsAt": "2020-09-19T09:45:00",
-        "endsAt": "2020-09-18T09:45:00",
-        "track": "blue",
-        "isServiceSession": false,
-        "speakers": [
-          {
-            "fullName": "Al Gore",
-            "tagLine": "Another Speaker Tagline",
-            "bio": "Another Speaker bio placeholder",
-            "profilePicture": "https://sessionize.com/image?f=c60d0ef66e02ee405bbe89ef29b7f626,400,400,1,0,test5.jpg",
-          }
-        ]
-      },
-      {
-        "title": "Sociotechnical DDD",
-        "description": "Sociotechnical description placeholder text",
-        "format": "Talk",
-        "startsAt": "2020-09-19T09:00:00",
-        "endsAt": "2020-09-18T09:45:00",
-        "track": "gold",
-        "isServiceSession": false,
-        "speakers": [
-          {
-            "fullName": "Speaker McGee",
-            "tagLine": "Speaker McGee Tagline",
-            "bio": "Speaker McGee bio placeholder",
-            "profilePicture": "https://sessionize.com/image?f=c60d0ef66e02ee405bbe89ef29b7f626,400,400,1,0,test8.jpg",
-          }
-        ]
-      },
-      {
-        "title": "Domain-Driven Design in Data Engineering: a Journey of Application, Adaption, and Invention",
-        "description": "Daniels talk description",
-        "format": "Talk",
-        "startsAt": "2020-09-19T09:00:00",
-        "endsAt": "2020-09-18T09:45:00",
-        "track": "green",
-        "isServiceSession": false,
-        "speakers": [
-          {
-            "fullName": "Dr. Speaker Speakalot",
-            "tagLine": "Dr. Speaker Speakalots Tagline",
-            "bio": "Dr. Speaker Speakalots bio placeholder",
-            "profilePicture": "https://sessionize.com/image?f=c60d0ef66e02ee405bbe89ef29b7f626,400,400,1,0,test2.jpg",
-          }
-        ]
-      },
-      {
-        "title": "A Talk of Sorts",
-        "description": "some description",
-        "format": "Talk",
-        "startsAt": "2020-09-19T09:00:00",
-        "endsAt": "2020-09-18T09:45:00",
-        "track": "purple",
-        "isServiceSession": false,
-        "speakers": [
-          {
-            "fullName": "Dr. Speaker Speakalot II",
-            "tagLine": "Dr. Speaker Speakalots Tagline",
-            "bio": "Dr. Speaker Speakalots bio placeholder",
-            "profilePicture": "https://sessionize.com/image?f=c60d0ef66e02ee405bbe89ef29b7f626,400,400,1,0,test7.jpg",
-          }
-        ]
-      },
-      {
-        "title": "I'm a Builder of Great Tools, Not a Usability Expert!",
-        "description": "some description",
-        "format": "Talk",
-        "startsAt": "2020-09-19T09:00:00",
-        "endsAt": "2020-09-18T09:45:00",
-        "track": "blue",
-        "isServiceSession": false,
-        "speakers": [
-          {
-            "fullName": "Linus Torvalds",
-            "tagLine": "I need no tagline",
-            "bio": "Dr. Speaker Speakalots bio placeholder",
-            "profilePicture": "https://sessionize.com/image?f=c60d0ef66e02ee405bbe89ef29b7f626,400,400,1,0,test7.jpg",
-          }
-        ]
-      }
-    ]
-  };
-
-
-  sessions = this.data.sessions;
-
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
-    //this.dataService.getAllData().pipe(takeUntil(this.destroy$)).subscribe((data: Config)=>{
-      //console.log(data);
-    //});
+    this.dataService.getMockScheduleJSON().pipe(takeUntil(this.destroy$)).subscribe((data: any[])=>{
+      console.log(JSON.stringify(data));
+    });
 
     jQuery('#speakerModal').on('show.bs.modal', function (event) {
       var button = jQuery(event.relatedTarget) // Button that triggered the modal
@@ -199,7 +53,18 @@ export class ScheduleComponent implements OnInit, OnDestroy {
       modal.find('.modal-body').text(sessionDescription)
     })
 
+    // this.sessions.forEach(function (item) {
+    //    console.log(item.startsAt);
+    // });
 
+    //test to determine the duration of a session to see how much vertical space it should take
+    var start  = "2020-09-18T11:45:00";
+    var end = "2020-09-18T12:30:00";
+
+    var ms = moment(end,"YYYY-MM-DD HH:mm:ss").diff(moment(start,"YYYY-MM-DD HH:mm:ss"));
+    var d = moment.duration(ms);
+    var s = Math.floor(d.asHours()) + moment.utc(ms).format(":mm:ss");
+    console.log(s); //should be 0:45:00 in this test
 
   }
 
