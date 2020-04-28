@@ -1152,11 +1152,61 @@ h2.conference-emphasis {
 }
 
 //Schedule page
-
+.schedule-display-track-headings {
+  span {
+    display: inline-block;
+    width: 20%;
+  }
+}
 #schedule-container {
+  position: relative;
   .schedule-row {
-    height: 100px;
+    height: 150px;
     border-top: 1px dashed rgba(#000, 0.5);
+    padding: $half-margin;
+  }
+  .schedule-column {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    width: 20%;
+    height: 100%;
+    background-color: rgba(#000, 0.1);
+    .session-item {
+      padding: $quarter-margin;
+      font-family: NunitoSansLight, sans-serif;
+      h4 {
+        margin: 0;
+        padding: 0;
+        color: $brand-white;
+        font-family: NunitoSansBold, sans-serif;
+      }
+      p {
+        color: $brand-white;
+        font-family: NunitoSansLight, sans-serif;
+      }
+      a {
+        color: $brand-white;
+        &:hover {
+          color: #fdc33c;
+          text-decoration: none;
+          cursor: pointer;
+          cursor: hand;
+        }
+      }
+    }
+    .gold {
+      background-color: #e6a62d;
+    }
+    .green {
+      background-color: #2ea165;
+    }
+    .purple {
+      background-color: #682c89;
+    }
+    .blue {
+      background-color: $brand-blue;
+    }
   }
 }
 

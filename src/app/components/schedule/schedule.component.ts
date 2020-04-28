@@ -2,6 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { DataService } from '../../services/data.service';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { Speaker } from './schedule.model';
+import { Session } from './schedule.model';
 import { Config } from '../../services/data.service';
 import * as moment from 'moment';
 
@@ -16,15 +18,31 @@ declare var jQuery: any;
 
 export class ScheduleComponent implements OnInit, OnDestroy {
 
-  //sessions:Array<any>;
+  sessions:Array<object>;
   destroy$: Subject<boolean> = new Subject<boolean>();
 
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
-    this.dataService.getMockScheduleJSON().pipe(takeUntil(this.destroy$)).subscribe((data: any[])=>{
-      console.log(JSON.stringify(data));
+    this.dataService.getMockScheduleJSON().pipe(takeUntil(this.destroy$)).subscribe((data: Array<Speaker>)=>{
+      //console.log(data);
+      this.sessions = data;
+      console.log(this.sessions);
+
+      //add height property (in px) based on session duration
+      this.sessions.forEach(function(element:Session){
+        //var ms = moment(end,"YYYY-MM-DD HH:mm:ss").diff(moment(start,"YYYY-MM-DD HH:mm:ss"));
+        var ms = moment(element.endsAt).diff(moment(element.startsAt));
+        var d = moment.duration(ms);
+        var s = Math.floor(d.asHours()) + moment.utc(ms).format(":mm:ss");
+        console.log(s);
+     })
+
     });
+
+    //test to determine the duration of a session to see how much vertical space it should take
+    var start  = "2020-09-18T11:45:00";
+    var end = "2020-09-18T12:30:00";
 
     jQuery('#speakerModal').on('show.bs.modal', function (event) {
       var button = jQuery(event.relatedTarget) // Button that triggered the modal
@@ -52,19 +70,6 @@ export class ScheduleComponent implements OnInit, OnDestroy {
       modal.find('.modal-title').text(sessionTitle)
       modal.find('.modal-body').text(sessionDescription)
     })
-
-    // this.sessions.forEach(function (item) {
-    //    console.log(item.startsAt);
-    // });
-
-    //test to determine the duration of a session to see how much vertical space it should take
-    var start  = "2020-09-18T11:45:00";
-    var end = "2020-09-18T12:30:00";
-
-    var ms = moment(end,"YYYY-MM-DD HH:mm:ss").diff(moment(start,"YYYY-MM-DD HH:mm:ss"));
-    var d = moment.duration(ms);
-    var s = Math.floor(d.asHours()) + moment.utc(ms).format(":mm:ss");
-    console.log(s); //should be 0:45:00 in this test
 
   }
 

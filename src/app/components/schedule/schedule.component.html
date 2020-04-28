@@ -1,15 +1,38 @@
 <div class="container schedule">
   <div class="row">
-    <div class="col-lg-6 col-lg-offset-3">
+    <div class="col-sm-12">
       <h1 class="text-center">Schedule</h1>
-      <p>Workshops start at 9 am each day and finish at 5 pm. The 3-day pre-conference workshops start on Monday, and the 2-day workshops start on Tuesday, with all workshops finishing on Wednesday. You cannot sign up for multiple workshops. The workshop ticket description will indicate the number of days.</p>
+      <div class="buttons">
+        <!--<a class="showSingle btn schedule-btn" target="1">
+              <span class="btn-title">Workshops</span>
+              <span class="btn-date">September 10 &dash; 12</span>
+          </a>-->
+        <a href="../workshops" class="showSingle btn schedule-btn">
+          <span class="btn-title">Workshops</span>
+          <span class="btn-date">September 16 ‐ 18</span>
+        </a>
+        <a class="showSingle btn schedule-btn" target="2">
+          <span class="btn-title">Kickoff Evening</span>
+          <span class="btn-date">September 18</span>
+        </a>
+        <a class="showSingle btn schedule-btn" target="3">
+          <span class="btn-title">Day 1</span>
+          <span class="btn-date">September 19</span>
+        </a>
+        <a class="showSingle btn schedule-btn" target="4">
+          <span class="btn-title">Day 2</span>
+          <span class="btn-date">September 20</span>
+        </a>
+      </div>
+      <!-- <p>Workshops start at 9 am each day and finish at 5 pm. The 3-day pre-conference workshops start on Monday, and the 2-day workshops start on Tuesday, with all workshops finishing on Wednesday. You cannot sign up for multiple workshops. The workshop ticket description will indicate the number of days.</p>
       <p>The conference itself kicks off Wednesday evening with a welcome reception, followed by the opening keynote. Thursday and Friday are two full days of keynotes, talks, hands-on sessions, and a dedicated open space track.
       </p>
       <p>The conference program committee is currently in the process of reviewing session proposals. Please check back later for the schedule.</p>
+    </div> -->
     </div>
   </div>
 
-  <!-- <div class="row">
+    <!-- <div class="row">
     <div class="col-xs-12">
       <div id="flexSchedule">
         <div class="session-item {{ session.track }}" *ngFor="let session of sessions">
@@ -40,51 +63,65 @@
   </div>
 </div> -->
 
-  <!-- Speaker Modal -->
-  <div class="modal fade" id="speakerModal" tabindex="-1" role="dialog" aria-labelledby="speakerModalLabel">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <img class="modal-speaker-profile-picture">
-          <h4 class="modal-title" id="speakerModalLabel">...</h4>
-        </div>
-        <div class="modal-body">...</div>
+  <div class="schedule-display-track-headings">
+    <span>Gold</span>
+    <span>Purple</span>
+    <span>Green</span>
+    <span>Blue</span>
+  </div>
+
+  <div id="schedule-container">
+    <div class="schedule-row"><span>8:00</span></div>
+    <div class="schedule-row"><span>9:00</span></div>
+    <div class="schedule-row"><span>10:00</span></div>
+    <div class="schedule-row"><span>11:00</span></div>
+    <div class="schedule-row"><span>12:00</span></div>
+    <div class="schedule-row"><span>1:00</span></div>
+    <div class="schedule-row"><span>2:00</span></div>
+    <div class="schedule-row"><span>3:00</span></div>
+    <div class="schedule-row"><span>4:00</span></div>
+    <div class="schedule-row"><span>5:00</span></div>
+    <div class="schedule-row"><span>6:00</span></div>
+    <div class="schedule-row"><span>7:00</span></div>
+    <div class="schedule-row"><span>8:00</span></div>
+    <div class="schedule-row"><span>9:00</span></div>
+    <div class="schedule-row"><span>10:00</span></div>
+    <div class="schedule-row"><span>11:00</span></div>
+    <div class="schedule-row"><span>12:00</span></div>
+    <div class="schedule-column">
+      <div class="session-item gold" style="height: 112.5px">
+        <h4><a href="#">Speaking About Speaky Things</a></h4>
+        <p><em><a href="#">Zachary Johnston</a></em><br>8:00 - 8:45</p>
       </div>
     </div>
   </div>
 
-    <!-- Session Modal -->
-    <div class="modal fade" id="sessionModal" tabindex="-1" role="dialog" aria-labelledby="sessionModalLabel">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <p class="modal-speaker-name">...</p>
-            <h4 class="modal-title" id="sessiomModalLabel">...</h4>
-          </div>
-          <div class="modal-body">...</div>
-        </div>
+<!-- Speaker Modal -->
+<div class="modal fade" id="speakerModal" tabindex="-1" role="dialog" aria-labelledby="speakerModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+        <img class="modal-speaker-profile-picture">
+        <h4 class="modal-title" id="speakerModalLabel">...</h4>
       </div>
+      <div class="modal-body">...</div>
     </div>
+  </div>
+</div>
 
-    <div id="schedule-container">
-      <div class="schedule-row"><span>8:00</span></div>
-      <div class="schedule-row"><span>9:00</span></div>
-      <div class="schedule-row"><span>10:00</span></div>
-      <div class="schedule-row"><span>11:00</span></div>
-      <div class="schedule-row"><span>12:00</span></div>
-      <div class="schedule-row"><span>1:00</span></div>
-      <div class="schedule-row"><span>2:00</span></div>
-      <div class="schedule-row"><span>3:00</span></div>
-      <div class="schedule-row"><span>4:00</span></div>
-      <div class="schedule-row"><span>5:00</span></div>
-      <div class="schedule-row"><span>6:00</span></div>
-      <div class="schedule-row"><span>7:00</span></div>
-      <div class="schedule-row"><span>8:00</span></div>
-      <div class="schedule-row"><span>9:00</span></div>
-      <div class="schedule-row"><span>10:00</span></div>
-      <div class="schedule-row"><span>11:00</span></div>
-      <div class="schedule-row"><span>12:00</span></div>
-
+<!-- Session Modal -->
+<div class="modal fade" id="sessionModal" tabindex="-1" role="dialog" aria-labelledby="sessionModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+            aria-hidden="true">&times;</span></button>
+        <p class="modal-speaker-name">...</p>
+        <h4 class="modal-title" id="sessiomModalLabel">...</h4>
+      </div>
+      <div class="modal-body">...</div>
     </div>
+  </div>
+</div>
