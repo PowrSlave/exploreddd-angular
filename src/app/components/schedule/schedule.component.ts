@@ -27,22 +27,29 @@ export class ScheduleComponent implements OnInit, OnDestroy {
     this.dataService.getMockScheduleJSON().pipe(takeUntil(this.destroy$)).subscribe((data: Array<Speaker>)=>{
       //console.log(data);
       this.sessions = data;
-      console.log(this.sessions);
+      //console.log(this.sessions);
 
       //add height property (in px) based on session duration
       this.sessions.forEach(function(element:Session){
-        //var ms = moment(end,"YYYY-MM-DD HH:mm:ss").diff(moment(start,"YYYY-MM-DD HH:mm:ss"));
-        var ms = moment(element.endsAt).diff(moment(element.startsAt));
-        var d = moment.duration(ms);
-        var s = Math.floor(d.asHours()) + moment.utc(ms).format(":mm:ss");
-        console.log(s);
-     })
+        var ms = moment(element.endsAt,"YYYY-MM-DD HH:mm:ss").diff(moment(element.startsAt,"YYYY-MM-DD HH:mm:ss"));
+        var m = moment.duration(ms).asMinutes();
+        element.pixelHeight = (`${(m*2.5)}px`); //duration (mins) multiplied by a factor of 2.5 to be compatible with 150px hour timeblock size
+      });
+
+      console.log(this.sessions.length);
+
+      for (let i=0; i<this.sessions.length; i++) {
+        if (i < this.sessions.length-1) {
+          var ms = moment(this.sessions[i]['endsAt'],"YYYY-MM-DD HH:mm:ss").diff(moment(this.sessions[i+1]['startsAt'],"YYYY-MM-DD HH:mm:ss"));
+          var m = moment.duration(ms).asMinutes();
+          m *= -1;
+          console.log(`the gap between current and next session is ${m} mins`);
+        }
+      }
 
     });
 
-    //test to determine the duration of a session to see how much vertical space it should take
-    var start  = "2020-09-18T11:45:00";
-    var end = "2020-09-18T12:30:00";
+
 
     jQuery('#speakerModal').on('show.bs.modal', function (event) {
       var button = jQuery(event.relatedTarget) // Button that triggered the modal

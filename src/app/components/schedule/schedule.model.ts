@@ -11,7 +11,7 @@ export interface Session {
   format: string,
   startsAt: string,
   endsAt: string,
-  duration?: string,
+  pixelHeight?: string,
   track: string,
   isServiceSession: boolean,
   speaker: Speaker
