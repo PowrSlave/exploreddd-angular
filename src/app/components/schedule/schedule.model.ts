@@ -6,12 +6,13 @@ export interface Speaker {
 }
 
 export interface Session {
-  title: number,
+  title: string,
   description: string,
   format: string,
   startsAt: string,
   endsAt: string,
   pixelHeight?: string,
+  pixelMarginBottom?: string,
   track: string,
   isServiceSession: boolean,
   speaker: Speaker

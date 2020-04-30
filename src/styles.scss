@@ -1153,25 +1153,34 @@ h2.conference-emphasis {
 
 //Schedule page
 .schedule-display-track-headings {
+  margin-bottom: $standard-margin;
+  :first-child {
+    margin-left: 75px;
+  }
   span {
     display: inline-block;
     width: 20%;
+    color: rgba(#000, 0.65);
   }
 }
 #schedule-container {
   position: relative;
   .schedule-row {
     height: 150px;
-    border-top: 1px dashed rgba(#000, 0.5);
+    border-top: 1px dashed rgba(#000, 0.25);
     padding: $half-margin;
+    span {
+      color: rgba(#000, 0.65);
+    }
   }
   .schedule-column {
     position: absolute;
     z-index: 1;
     top: 0;
+    left: 75px;
     width: 20%;
     height: 100%;
-    background-color: rgba(#000, 0.1);
+    // background-color: rgba(#000, 0.1);
     .session-item {
       padding: $quarter-margin;
       font-family: NunitoSansLight, sans-serif;
@@ -1207,45 +1216,6 @@ h2.conference-emphasis {
     .blue {
       background-color: $brand-blue;
     }
-  }
-}
-
-#flexSchedule {
-  display: flex;
-  flex-wrap: wrap;
-  .session-item {
-    width: 232px; //adjust this as needed for responsivity
-    padding: $half-margin;
-    margin-bottom: $standard-margin;
-    h4 {
-      color: $brand-white;
-      font-family: NunitoSansBold, sans-serif;
-    }
-    p {
-      color: $brand-white;
-      font-family: NunitoSansBold, sans-serif;
-    }
-    a {
-      color: $brand-white;
-      &:hover {
-        color: #fdc33c;
-        text-decoration: none;
-        cursor: pointer;
-        cursor: hand;
-      }
-    }
-  }
-  .gold {
-    background-color: #e6a62d;
-  }
-  .green {
-    background-color: #2ea165;
-  }
-  .purple {
-    background-color: #682c89;
-  }
-  .blue {
-    background-color: $brand-blue;
   }
 }
 

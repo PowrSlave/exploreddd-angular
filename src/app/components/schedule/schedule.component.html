@@ -89,9 +89,27 @@
     <div class="schedule-row"><span>11:00</span></div>
     <div class="schedule-row"><span>12:00</span></div>
     <div class="schedule-column">
-      <div class="session-item gold" style="height: 112.5px">
-        <h4><a href="#">Speaking About Speaky Things</a></h4>
-        <p><em><a href="#">Zachary Johnston</a></em><br>8:00 - 8:45</p>
+      <div *ngFor="let session of sessions" class="session-item {{ session.track }}" [style.height]="session.pixelHeight" [style.margin-bottom]="session.pixelMarginBottom">
+        <h4>
+          <a
+            data-toggle="modal"
+            data-target="#speakerModal"
+            [attr.data-speaker-name]="session.speakers[0].fullName"
+            [attr.data-speaker-profile-picture]="session.speakers[0].profilePicture"
+            [attr.data-speaker-bio]="session.speakers[0].bio">
+            {{ session.speakers[0].fullName }}
+          </a>
+        </h4>
+        <p>
+          <a
+            data-toggle="modal"
+            data-target="#sessionModal"
+            [attr.data-speaker-name]="session.speakers[0].fullName"
+            [attr.data-session-title]="session.title"
+            [attr.data-session-description]="session.description">
+            {{ session.title }}
+          </a>
+        </p>
       </div>
     </div>
   </div>

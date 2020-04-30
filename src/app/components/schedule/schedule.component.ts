@@ -18,38 +18,67 @@ declare var jQuery: any;
 
 export class ScheduleComponent implements OnInit, OnDestroy {
 
-  sessions:Array<object>;
+  sessions:Array<Session>;
   destroy$: Subject<boolean> = new Subject<boolean>();
 
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
-    this.dataService.getMockScheduleJSON().pipe(takeUntil(this.destroy$)).subscribe((data: Array<Speaker>)=>{
+    this.dataService.getMockScheduleJSON().pipe(takeUntil(this.destroy$)).subscribe((data: Array<Session>)=>{
       //console.log(data);
       this.sessions = data;
       //console.log(this.sessions);
 
-      //add height property (in px) based on session duration
+      let goldSessions= [];
+      let greenSessions = [];
+      let purpleSessions = [];
+      let blueSessions = [];
+
       this.sessions.forEach(function(element:Session){
-        var ms = moment(element.endsAt,"YYYY-MM-DD HH:mm:ss").diff(moment(element.startsAt,"YYYY-MM-DD HH:mm:ss"));
-        var m = moment.duration(ms).asMinutes();
-        element.pixelHeight = (`${(m*2.5)}px`); //duration (mins) multiplied by a factor of 2.5 to be compatible with 150px hour timeblock size
+        switch (element.track) {
+          case 'gold':
+            goldSessions.push(element);
+          break;
+          case 'green':
+            greenSessions.push(element);
+          break;
+          case 'purple':
+            purpleSessions.push(element);
+          break;
+          case 'blue':
+            blueSessions.push(element);
+          break;
+        }
       });
 
-      console.log(this.sessions.length);
+      //this needs to happen for each track coloured array (refactor later)
+      this.computeSessionHeights(goldSessions);
+      this.computeSessionBottomMargin(goldSessions);
 
-      for (let i=0; i<this.sessions.length; i++) {
-        if (i < this.sessions.length-1) {
-          var ms = moment(this.sessions[i]['endsAt'],"YYYY-MM-DD HH:mm:ss").diff(moment(this.sessions[i+1]['startsAt'],"YYYY-MM-DD HH:mm:ss"));
-          var m = moment.duration(ms).asMinutes();
-          m *= -1;
-          console.log(`the gap between current and next session is ${m} mins`);
-        }
-      }
+      this.computeSessionHeights(greenSessions);
+      this.computeSessionBottomMargin(greenSessions);
+
+      this.computeSessionHeights(purpleSessions);
+      this.computeSessionBottomMargin(purpleSessions);
+
+      this.computeSessionHeights(blueSessions);
+      this.computeSessionBottomMargin(blueSessions);
+
+      // console.log(goldSessions);
+      // console.log(greenSessions);
+      // console.log(purpleSessions);
+      // console.log(blueSessions);
+
+      let concatenatedSessions = [
+        goldSessions,
+        greenSessions,
+        purpleSessions,
+        blueSessions
+      ];
+
+      console.log(concatenatedSessions);
 
     });
-
-
 
     jQuery('#speakerModal').on('show.bs.modal', function (event) {
       var button = jQuery(event.relatedTarget) // Button that triggered the modal
@@ -84,6 +113,30 @@ export class ScheduleComponent implements OnInit, OnDestroy {
     this.destroy$.next(true);
     // Unsubscribe from the subject
     this.destroy$.unsubscribe();
+  }
+
+  //calculate Session DOM Element Height Prior to drawing
+  computeSessionHeights(trackColor:Array<any>) {
+    trackColor.forEach(function(element:Session){
+      var ms = moment(element.endsAt,"YYYY-MM-DD HH:mm:ss").diff(moment(element.startsAt,"YYYY-MM-DD HH:mm:ss"));
+      var m = moment.duration(ms).asMinutes();
+      element.pixelHeight = (`${(m*2.5)}px`); //duration (mins) multiplied by a factor of 2.5 to be compatible with 150px hour timeblock size
+      //console.log(element.pixelHeight);
+    });
+  }
+
+  //calculate Session bottom margin to get spacing correct
+  computeSessionBottomMargin(trackColor:Array<any>) {
+    for (let i=0; i<trackColor.length; i++) {
+      if (i < trackColor.length-1) {
+        var ms = moment(trackColor[i]['endsAt'],"YYYY-MM-DD HH:mm:ss").diff(moment(trackColor[i+1]['startsAt'],"YYYY-MM-DD HH:mm:ss"));
+        var m = moment.duration(ms).asMinutes();
+        m *= -1;
+        trackColor[i].pixelMarginBottom = (`${(m*2.5)}px`); //duration (mins) multiplied by a factor of 2.5 to be compatible with 150px hour timeblock size
+        //console.log(this.trackColor[i].pixelMarginBottom);
+        //console.log(`the gap between current and next session is ${m} mins`);
+      }
+    }
   }
 
 }
