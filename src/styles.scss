@@ -1173,48 +1173,51 @@ h2.conference-emphasis {
       color: rgba(#000, 0.65);
     }
   }
-  .schedule-column {
+  #schedule-column-container {
     position: absolute;
-    z-index: 1;
     top: 0;
-    left: 75px;
-    width: 20%;
-    height: 100%;
-    // background-color: rgba(#000, 0.1);
-    .session-item {
-      padding: $quarter-margin;
-      font-family: NunitoSansLight, sans-serif;
-      h4 {
-        margin: 0;
-        padding: 0;
-        color: $brand-white;
-        font-family: NunitoSansBold, sans-serif;
-      }
-      p {
-        color: $brand-white;
+    width: 100%;
+    padding-left: 75px;
+    .schedule-column {
+      float: left;
+      z-index: 1;
+      width: 20%;
+      height: 100%;
+      .session-item {
+        padding: $quarter-margin;
         font-family: NunitoSansLight, sans-serif;
-      }
-      a {
-        color: $brand-white;
-        &:hover {
-          color: #fdc33c;
-          text-decoration: none;
-          cursor: pointer;
-          cursor: hand;
+        h4 {
+          margin: 0;
+          padding: 0;
+          color: $brand-white;
+          font-family: NunitoSansBold, sans-serif;
+        }
+        p {
+          color: $brand-white;
+          font-family: NunitoSansLight, sans-serif;
+        }
+        a {
+          color: $brand-white;
+          &:hover {
+            color: #fdc33c;
+            text-decoration: none;
+            cursor: pointer;
+            cursor: hand;
+          }
         }
       }
-    }
-    .gold {
-      background-color: #e6a62d;
-    }
-    .green {
-      background-color: #2ea165;
-    }
-    .purple {
-      background-color: #682c89;
-    }
-    .blue {
-      background-color: $brand-blue;
+      .gold {
+        background-color: #e6a62d;
+      }
+      .green {
+        background-color: #2ea165;
+      }
+      .purple {
+        background-color: #682c89;
+      }
+      .blue {
+        background-color: $brand-blue;
+      }
     }
   }
 }

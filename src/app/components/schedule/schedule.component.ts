@@ -19,6 +19,8 @@ declare var jQuery: any;
 export class ScheduleComponent implements OnInit, OnDestroy {
 
   sessions:Array<Session>;
+  sessionsByTrack:Array<any>;
+  peopleByCountry:Array<any>;
   destroy$: Subject<boolean> = new Subject<boolean>();
 
   constructor(private dataService: DataService) { }
@@ -64,19 +66,21 @@ export class ScheduleComponent implements OnInit, OnDestroy {
       this.computeSessionHeights(blueSessions);
       this.computeSessionBottomMargin(blueSessions);
 
-      // console.log(goldSessions);
-      // console.log(greenSessions);
-      // console.log(purpleSessions);
-      // console.log(blueSessions);
 
-      let concatenatedSessions = [
-        goldSessions,
-        greenSessions,
-        purpleSessions,
-        blueSessions
+      this.sessionsByTrack = [
+        { 'track': 'gold',
+          'sessions': goldSessions
+        },
+        { 'track': 'green',
+          'sessions': greenSessions
+        },
+        { 'track': 'purple',
+          'sessions': purpleSessions
+        },
+        { 'track': 'blue',
+          'sessions': blueSessions
+        }
       ];
-
-      console.log(concatenatedSessions);
 
     });
 

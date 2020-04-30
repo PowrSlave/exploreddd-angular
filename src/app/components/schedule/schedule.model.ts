@@ -17,3 +17,5 @@ export interface Session {
   isServiceSession: boolean,
   speaker: Speaker
 }
+
+
