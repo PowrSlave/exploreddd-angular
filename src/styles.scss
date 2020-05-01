@@ -1184,6 +1184,10 @@ h2.conference-emphasis {
       z-index: 1;
       width: 25%;
       height: 100%;
+      padding-left: 5px;
+      :first-child {
+        padding-left: 0;
+      }
       .session-item {
         padding: $quarter-margin;
         font-family: NunitoSansLight, sans-serif;
