@@ -1159,7 +1159,8 @@ h2.conference-emphasis {
   }
   span {
     display: inline-block;
-    width: 20%;
+    width: 22.85%;
+    text-align: center;
     color: rgba(#000, 0.65);
   }
 }
@@ -1181,16 +1182,20 @@ h2.conference-emphasis {
     .schedule-column {
       float: left;
       z-index: 1;
-      width: 20%;
+      width: 25%;
       height: 100%;
       .session-item {
         padding: $quarter-margin;
         font-family: NunitoSansLight, sans-serif;
+        overflow: hidden;
+        border-bottom: 5px solid white;
         h4 {
           margin: 0;
           padding: 0;
           color: $brand-white;
-          font-family: NunitoSansBold, sans-serif;
+          a {
+            font-family: NunitoSansSemiBold, sans-serif;
+          }
         }
         p {
           color: $brand-white;
@@ -1198,6 +1203,7 @@ h2.conference-emphasis {
         }
         a {
           color: $brand-white;
+          font-family: NunitoSansLight, sans-serif;
           &:hover {
             color: #fdc33c;
             text-decoration: none;

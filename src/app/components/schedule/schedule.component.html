@@ -32,98 +32,68 @@
     </div>
   </div>
 
-    <!-- <div class="row">
-    <div class="col-xs-12">
-      <div id="flexSchedule">
-        <div class="session-item {{ session.track }}" *ngFor="let session of sessions">
-          <h4>
-            <a
-              data-toggle="modal"
-              data-target="#speakerModal"
-              [attr.data-speaker-name]="session.speakers[0].fullName"
-              [attr.data-speaker-profile-picture]="session.speakers[0].profilePicture"
-              [attr.data-speaker-bio]="session.speakers[0].bio">
-              {{ session.speakers[0].fullName }}
-            </a>
-            </h4>
-            <p>
-              <a
-              data-toggle="modal"
-              data-target="#sessionModal"
-              [attr.data-speaker-name]="session.speakers[0].fullName"
-              [attr.data-session-title]="session.title"
-              [attr.data-session-description]="session.description"
-              >
-              {{ session.title }}
-            </a>
-          </p>
-        </div>
+  <div class="row">
+    <div class="col-sm-12">
+
+      <div class="schedule-display-track-headings">
+        <span>Gold</span>
+        <span>Purple</span>
+        <span>Green</span>
+        <span>Blue</span>
       </div>
-    </div>
-  </div>
-</div> -->
 
-  <div class="schedule-display-track-headings">
-    <span>Gold</span>
-    <span>Purple</span>
-    <span>Green</span>
-    <span>Blue</span>
-  </div>
+      <div id="schedule-container">
 
-  <div id="schedule-container">
-    <div class="schedule-row"><span>8:00</span></div>
-    <div class="schedule-row"><span>9:00</span></div>
-    <div class="schedule-row"><span>10:00</span></div>
-    <div class="schedule-row"><span>11:00</span></div>
-    <div class="schedule-row"><span>12:00</span></div>
-    <div class="schedule-row"><span>1:00</span></div>
-    <div class="schedule-row"><span>2:00</span></div>
-    <div class="schedule-row"><span>3:00</span></div>
-    <div class="schedule-row"><span>4:00</span></div>
-    <div class="schedule-row"><span>5:00</span></div>
-    <div class="schedule-row"><span>6:00</span></div>
-    <div class="schedule-row"><span>7:00</span></div>
-    <div class="schedule-row"><span>8:00</span></div>
-    <div class="schedule-row"><span>9:00</span></div>
-    <div class="schedule-row"><span>10:00</span></div>
-    <div class="schedule-row"><span>11:00</span></div>
-    <div class="schedule-row"><span>12:00</span></div>
-    <div id="schedule-column-container">
-      <div class="schedule-column" *ngFor="let column of sessionsByTrack">
-        <div *ngFor="let session of column.sessions" class="session-item {{ session.track }}" [style.height]="session.pixelHeight" [style.margin-bottom]="session.pixelMarginBottom">
-          <h4>
-            <a
-              data-toggle="modal"
-              data-target="#speakerModal"
-              [attr.data-speaker-name]="session.speakers[0].fullName"
-              [attr.data-speaker-profile-picture]="session.speakers[0].profilePicture"
-              [attr.data-speaker-bio]="session.speakers[0].bio">
-              {{ session.speakers[0].fullName }}
-            </a>
-          </h4>
-          <p>
-            <a
-              data-toggle="modal"
-              data-target="#sessionModal"
-              [attr.data-speaker-name]="session.speakers[0].fullName"
-              [attr.data-session-title]="session.title"
-              [attr.data-session-description]="session.description">
-              {{ session.title }}
-            </a>
-          </p>
+        <div class="schedule-row"><span>8:00</span></div>
+        <div class="schedule-row"><span>9:00</span></div>
+        <div class="schedule-row"><span>10:00</span></div>
+        <div class="schedule-row"><span>11:00</span></div>
+        <div class="schedule-row"><span>12:00</span></div>
+        <div class="schedule-row"><span>1:00</span></div>
+        <div class="schedule-row"><span>2:00</span></div>
+        <div class="schedule-row"><span>3:00</span></div>
+        <div class="schedule-row"><span>4:00</span></div>
+        <div class="schedule-row"><span>5:00</span></div>
+        <div class="schedule-row"><span>6:00</span></div>
+        <div class="schedule-row"><span>7:00</span></div>
+        <div class="schedule-row"><span>8:00</span></div>
+        <div class="schedule-row"><span>9:00</span></div>
+        <div class="schedule-row"><span>10:00</span></div>
+        <div class="schedule-row"><span>11:00</span></div>
+        <div class="schedule-row"><span>12:00</span></div>
+
+        <div id="schedule-column-container">
+          <div class="schedule-column" *ngFor="let column of sessionsByTrack">
+            <div *ngFor="let session of column.sessions" class="session-item {{ session.track }}" [style.height]="session.pixelHeight" [style.margin-bottom]="session.pixelMarginBottom">
+              <h4>
+                <a
+                  data-toggle="modal"
+                  data-target="#speakerModal"
+                  [attr.data-speaker-name]="session.speakers[0].fullName"
+                  [attr.data-speaker-profile-picture]="session.speakers[0].profilePicture"
+                  [attr.data-speaker-bio]="session.speakers[0].bio">
+                  {{ session.speakers[0].fullName }}
+                </a>
+              </h4>
+              <p>
+                <a
+                  data-toggle="modal"
+                  data-target="#sessionModal"
+                  [attr.data-speaker-name]="session.speakers[0].fullName"
+                  [attr.data-session-title]="session.title"
+                  [attr.data-session-description]="session.description">
+                  {{ session.title }}
+                </a>
+              </p>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  </div>
 
-  <ul *ngFor="let column of sessionsByTrack">
-    <li>{{ column.track }}</li>
-    <ul>
-     <li *ngFor="let session of column.sessions">
-       {{ session.title }}
-     </li>
-    </ul>
-  </ul>
+      </div> <!-- schedule-container -->
+
+    </div> <!-- col-sm-12 -->
+  </div> <!-- row -->
+</div>
 
 <!-- Speaker Modal -->
 <div class="modal fade" id="speakerModal" tabindex="-1" role="dialog" aria-labelledby="speakerModalLabel">
