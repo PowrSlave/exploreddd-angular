@@ -64,7 +64,13 @@
 
         <div id="schedule-column-container">
           <div class="schedule-column" *ngFor="let column of sessionsByTrack">
-            <div *ngFor="let session of column.sessions" class="session-item {{ session.track }}" [style.height]="session.pixelHeight" [style.margin-bottom]="session.pixelMarginBottom">
+            <div
+              *ngFor="let session of column.sessions"
+              class="session-item {{ session.track }}"
+              [style.height]="session.pixelHeight"
+              [style.margin-bottom]="session.pixelMarginBottom"
+              [ngClass]="{'serviceSession': session.isServiceSession}"
+            >
               <h4>
                 <a
                   data-toggle="modal"
