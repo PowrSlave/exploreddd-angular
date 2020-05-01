@@ -1165,7 +1165,9 @@ h2.conference-emphasis {
   }
 }
 #schedule-container {
-  position: relative;
+  .dayContainer {
+    position: relative;
+  }
   .schedule-row {
     height: 150px;
     border-top: 1px dashed rgba(#000, 0.25);
@@ -1202,7 +1204,7 @@ h2.conference-emphasis {
           }
         }
         p {
-          color: $brand-white;
+          color: #000;
           font-family: NunitoSansLight, sans-serif;
         }
         a {

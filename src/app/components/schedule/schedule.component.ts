@@ -82,6 +82,14 @@ export class ScheduleComponent implements OnInit, OnDestroy {
         }
       ];
 
+      //Schedule Page jQuery
+      jQuery(function(){
+        jQuery('.showSingle').click(function(){
+          jQuery('.targetDiv').hide();
+          jQuery('#div'+jQuery(this).attr('target')).fadeIn();
+          });
+      });
+
     });
 
     jQuery('#speakerModal').on('show.bs.modal', function (event) {
