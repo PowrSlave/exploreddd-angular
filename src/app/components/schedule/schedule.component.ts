@@ -29,7 +29,16 @@ export class ScheduleComponent implements OnInit, OnDestroy {
     this.dataService.getMockScheduleJSON().pipe(takeUntil(this.destroy$)).subscribe((data: Array<Session>)=>{
       //console.log(data);
       this.sessions = data;
-      //console.log(this.sessions);
+
+      //sort sessions by startDate
+      this.sessions.sort((a, b) => (a.startsAt > b.startsAt) ? 1 : -1);
+
+      //'Wednesday, September 16th...for exampe'
+      this.sessions.forEach(function(element:Session){
+        console.log(
+          moment(element.startsAt).format('dddd, MMMM Do')
+        );
+      });
 
       let goldSessions= [];
       let greenSessions = [];
@@ -81,6 +90,8 @@ export class ScheduleComponent implements OnInit, OnDestroy {
           'sessions': blueSessions
         }
       ];
+
+      //console.log(this.sessionsByTrack);
 
       //Schedule Page jQuery
       jQuery(function(){
