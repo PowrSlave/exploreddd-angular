@@ -36,8 +36,8 @@ export class ScheduleComponent implements OnInit, OnDestroy {
       //truncate long titles and add elipsis (...) so they dont break session containers
 
       this.sessions.forEach(function(element:Session){
-        if (element.title.length > 50)
-          element.title = element.title.substring(0,50) + '...';
+        if (element.title.length > 60)
+          element.title = element.title.substring(0,60) + '...';
         // else
         //   element.title;
       });
