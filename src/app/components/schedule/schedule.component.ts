@@ -38,8 +38,6 @@ export class ScheduleComponent implements OnInit, OnDestroy {
       this.sessions.forEach(function(element:Session){
         if (element.title.length > 60)
           element.title = element.title.substring(0,60) + '...';
-        // else
-        //   element.title;
       });
 
       //'Wednesday, September 16th...for exampe'
