@@ -1247,10 +1247,26 @@ h2.conference-emphasis {
 }
 
 #speakerModal {
+  .modal-header {
+    border-bottom: 0;
+    h4 {
+      text-align: center;
+      font-family: NunitoSansSemiBold, sans-serif;
+    }
+  }
+  .modal-content {
+    border-radius: 0;
+    border-bottom: 0;
+    .modal-body {
+      text-align: center;
+    }
+  }
   .modal-speaker-profile-picture {
-    height: 100px;
-    width: 100px;
+    height: 200px;
+    width: 200px;
     border-radius: 100px;
+    display: block;
+    margin: 0 auto $half-margin auto;
   }
 }
 
