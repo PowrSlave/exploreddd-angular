@@ -1249,9 +1249,24 @@ h2.conference-emphasis {
 #speakerModal {
   .modal-header {
     border-bottom: 0;
+    padding-bottom: 0;
+    text-align: center;
+    .modal-speaker-profile-picture {
+      height: 200px;
+      width: 200px;
+      border-radius: 100px;
+      display: block;
+      margin: 0 auto $half-margin auto;
+    }
     h4 {
-      text-align: center;
+      //text-align: center;
+      font-size: 22px;
+      color: $brand-blue;
       font-family: NunitoSansSemiBold, sans-serif;
+      margin-bottom: 0;
+    }
+    .modal-tagline {
+      margin-bottom: $half-margin;
     }
   }
   .modal-content {
@@ -1260,13 +1275,6 @@ h2.conference-emphasis {
     .modal-body {
       text-align: center;
     }
-  }
-  .modal-speaker-profile-picture {
-    height: 200px;
-    width: 200px;
-    border-radius: 100px;
-    display: block;
-    margin: 0 auto $half-margin auto;
   }
 }
 
