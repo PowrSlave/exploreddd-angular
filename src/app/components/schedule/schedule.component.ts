@@ -33,81 +33,129 @@ export class ScheduleComponent implements OnInit, OnDestroy {
       //sort sessions by startDate
       this.sessions.sort((a, b) => (a.startsAt > b.startsAt) ? 1 : -1);
 
-      //truncate long titles and add elipsis (...) so they dont break session containers
+      // let goldSessions= [];
+      // let greenSessions = [];
+      // let purpleSessions = [];
+      // let blueSessions = [];
 
-      this.sessions.forEach(function(element:Session){
-        if (element.title.length > 60)
-          element.title = element.title.substring(0,60) + '...';
-      });
+      //this.sessions.forEach(function(element:Session){
 
-      //'Wednesday, September 16th...for exampe'
-      this.sessions.forEach(function(element:Session){
-        console.log(
-          moment(element.startsAt).format('dddd, MMMM Do')
-        );
-      });
+        // if (element.title.length > 60) {
+        //   element.title = element.title.substring(0,60) + '...';
+        // }
 
-      let goldSessions= [];
-      let greenSessions = [];
-      let purpleSessions = [];
-      let blueSessions = [];
+        //this is duplicating sessions
+        //element.prettyStartDay = moment(element.startsAt).format('dddd, MMMM Do');
 
-      this.sessions.forEach(function(element:Session){
-        switch (element.track) {
-          case 'gold':
-            goldSessions.push(element);
-          break;
-          case 'green':
-            greenSessions.push(element);
-          break;
-          case 'purple':
-            purpleSessions.push(element);
-          break;
-          case 'blue':
-            blueSessions.push(element);
-          break;
-        }
-      });
+      //   switch (element.track) {
+      //     case 'gold':
+      //       goldSessions.push(element);
+      //     break;
+      //     case 'green':
+      //       greenSessions.push(element);
+      //     break;
+      //     case 'purple':
+      //       purpleSessions.push(element);
+      //     break;
+      //     case 'blue':
+      //       blueSessions.push(element);
+      //     break;
+      //   }
+      // });
+
+      //console.log(this.sessions);
 
       //this needs to happen for each track coloured array (refactor later)
-      this.computeSessionHeights(goldSessions);
-      this.computeSessionBottomMargin(goldSessions);
+      // this.computeSessionHeights(goldSessions);
+      // this.computeSessionBottomMargin(goldSessions);
 
-      this.computeSessionHeights(greenSessions);
-      this.computeSessionBottomMargin(greenSessions);
+      // this.computeSessionHeights(greenSessions);
+      // this.computeSessionBottomMargin(greenSessions);
 
-      this.computeSessionHeights(purpleSessions);
-      this.computeSessionBottomMargin(purpleSessions);
+      // this.computeSessionHeights(purpleSessions);
+      // this.computeSessionBottomMargin(purpleSessions);
 
-      this.computeSessionHeights(blueSessions);
-      this.computeSessionBottomMargin(blueSessions);
+      // this.computeSessionHeights(blueSessions);
+      // this.computeSessionBottomMargin(blueSessions);
 
+      //sessionsByTrack only works for a single day, so make it sessionsByTrackDay1 etc...
+      // this.sessionsByTrack = [
+      //   { 'track': 'gold',
+      //     'sessions': goldSessions
+      //   },
+      //   { 'track': 'green',
+      //     'sessions': greenSessions
+      //   },
+      //   { 'track': 'purple',
+      //     'sessions': purpleSessions
+      //   },
+      //   { 'track': 'blue',
+      //     'sessions': blueSessions
+      //   }
+      // ];
 
-      this.sessionsByTrack = [
+      // console.log(this.sessionsByTrack);
+
+      let sessionsByTrackDay1 = [
         { 'track': 'gold',
-          'sessions': goldSessions
+          'sessions': []
         },
         { 'track': 'green',
-          'sessions': greenSessions
+          'sessions': []
         },
         { 'track': 'purple',
-          'sessions': purpleSessions
+          'sessions': []
         },
         { 'track': 'blue',
-          'sessions': blueSessions
+          'sessions': []
         }
       ];
 
-      //console.log(this.sessionsByTrack);
+      let sessionsByTrackDay2 = [
+        { 'track': 'gold',
+          'sessions': []
+        },
+        { 'track': 'green',
+          'sessions': []
+        },
+        { 'track': 'purple',
+          'sessions': []
+        },
+        { 'track': 'blue',
+          'sessions': []
+        }
+      ];
 
-      //Schedule Page jQuery
-      jQuery(function(){
-        jQuery('.showSingle').click(function(){
-          jQuery('.targetDiv').hide();
-          jQuery('#div'+jQuery(this).attr('target')).fadeIn();
-          });
+      let sessionsByTrackDay3 = [
+        { 'track': 'gold',
+          'sessions': []
+        },
+        { 'track': 'green',
+          'sessions': []
+        },
+        { 'track': 'purple',
+          'sessions': []
+        },
+        { 'track': 'blue',
+          'sessions': []
+        }
+      ];
+
+      //try fresh here
+      this.sessions.forEach(function(element:Session){
+
       });
 
+
+
+    });
+
+    //Schedule Page jQuery
+    jQuery(function(){
+      jQuery('.showSingle').click(function(){
+        jQuery('.targetDiv').hide();
+        jQuery('#div'+jQuery(this).attr('target')).fadeIn();
+        });
     });
 
     jQuery('#speakerModal').on('show.bs.modal', function (event) {
