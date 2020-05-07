@@ -7,6 +7,7 @@ export interface Speaker {
 
 export interface Session {
   title: string,
+  titleSnipped?: string,
   description: string,
   format: string,
   startsAt: string,

@@ -26,18 +26,20 @@
 
   <div class="row">
     <div class="col-sm-12">
-      <h2>Conference Day 1</h2>
-      <h3>Wednesday, September 16</h3>
-      <div class="schedule-display-track-headings">
-        <span>Gold</span>
-        <span>Purple</span>
-        <span>Green</span>
-        <span>Blue</span>
-      </div>
 
       <div id="schedule-container">
 
         <div id="div1" class="targetDiv dayContainer">
+
+          <h2>Conference Day 1</h2>
+          <h3>Wednesday, September 16</h3>
+          <div class="schedule-display-track-headings">
+            <span>Gold</span>
+            <span>Purple</span>
+            <span>Green</span>
+            <span>Blue</span>
+          </div>
+
           <div class="schedule-row"><span>8:00</span></div>
           <div class="schedule-row"><span>9:00</span></div>
           <div class="schedule-row"><span>10:00</span></div>
@@ -97,10 +99,10 @@
                     [attr.data-speaker-name]="session.speakers[0].fullName"
                     [attr.data-session-title]="session.title"
                     [attr.data-session-description]="session.description">
-                    {{ session.title }}
+                    {{ session.titleSnipped }}
                   </a>
                 </p>
-                <p [hidden]="!session.isServiceSession">{{ session.title }}</p>
+                <p [hidden]="!session.isServiceSession">{{ session.titleSnipped }}</p>
               </div>
             </div>
           </div>

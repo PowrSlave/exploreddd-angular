@@ -4,7 +4,6 @@ import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { Speaker } from './schedule.model';
 import { Session } from './schedule.model';
-import { Config } from '../../services/data.service';
 import * as moment from 'moment';
 
 declare var jQuery: any;
@@ -22,23 +21,28 @@ export class ScheduleComponent implements OnInit, OnDestroy {
   sessionsByTrackDay1:Array<any>;
   sessionsByTrackDay2:Array<any>;
   sessionsByTrackDay3:Array<any>;
-  peopleByCountry:Array<any>;
   destroy$: Subject<boolean> = new Subject<boolean>();
 
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
     this.dataService.getMockScheduleJSON().pipe(takeUntil(this.destroy$)).subscribe((data: Array<Session>)=>{
-      //console.log(data);
+
       this.sessions = data;
 
       //sort sessions by startDate
       this.sessions.sort((a, b) => (a.startsAt > b.startsAt) ? 1 : -1);
 
-      //trim title lengths so they don't wrap too much in the session DOM item
+      /*
+      trim title lengths and save in a separate property so they don't wrap and take up
+      too much space in the schedule view, but don't mutate the full title property value
+      since it will be needed for the modal when clicked on
+      */
       this.sessions.forEach(function(element:Session){
         if (element.title.length > 60) {
-          element.title = element.title.substring(0,60) + '...';
+          element.titleSnipped = element.title.substring(0,60) + '...';
+        } else {
+          element.titleSnipped = element.title;
         }
       });
 
@@ -84,11 +88,6 @@ export class ScheduleComponent implements OnInit, OnDestroy {
       this.computeSessionHeights(blueSessions);
       this.computeSessionBottomMargin(blueSessions);
 
-      //console.log(goldSessions);
-      // console.log(greenSessions);
-      // console.log(purpleSessions);
-      // console.log(blueSessions);
-
       //if you get the above working, now split them up again (eesh) and then assign appropriately below
 
       day1goldSessions = goldSessions.filter(s => moment(s.startsAt).format('dddd, MMMM Do') === 'Wednesday, September 16th');
@@ -122,8 +121,6 @@ export class ScheduleComponent implements OnInit, OnDestroy {
           'sessions': day1blueSessions
         }
       ];
-
-      console.log(this.sessionsByTrackDay1);
 
       this.sessionsByTrackDay2 = [
         { 'track': 'gold',
@@ -196,7 +193,6 @@ export class ScheduleComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.destroy$.next(true);
-    // Unsubscribe from the subject
     this.destroy$.unsubscribe();
   }
 
@@ -206,7 +202,6 @@ export class ScheduleComponent implements OnInit, OnDestroy {
       var ms = moment(element.endsAt,"YYYY-MM-DD HH:mm:ss").diff(moment(element.startsAt,"YYYY-MM-DD HH:mm:ss"));
       var m = moment.duration(ms).asMinutes();
       element.pixelHeight = (`${(m*2.5)}px`); //duration (mins) multiplied by a factor of 2.5 to be compatible with 150px hour timeblock size
-      //console.log(element.pixelHeight);
     });
   }
 
@@ -218,8 +213,6 @@ export class ScheduleComponent implements OnInit, OnDestroy {
         var m = moment.duration(ms).asMinutes();
         m *= -1;
         trackColor[i].pixelMarginBottom = (`${(m*2.5)}px`); //duration (mins) multiplied by a factor of 2.5 to be compatible with 150px hour timeblock size
-        //console.log(this.trackColor[i].pixelMarginBottom);
-        //console.log(`the gap between current and next session is ${m} mins`);
       }
     }
   }

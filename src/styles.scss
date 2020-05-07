@@ -1233,11 +1233,11 @@ h2.conference-emphasis {
         background-color: $brand-blue;
       }
       .serviceSession {
-        //background-color: rgba(#000,0.35); //maybe?
+        // background-color: rgba(#000,0.35); //maybe?
         background: none;
-        color: #000;
         p {
           font-family: NunitoSansSemiBold, sans-serif;
+          color: rgba(#000, 0.85);
         }
       }
     }
