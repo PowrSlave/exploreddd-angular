@@ -159,6 +159,8 @@ export class ScheduleComponent implements OnInit, OnDestroy {
       jQuery('.showSingle').click(function(){
         jQuery('.targetDiv').hide();
         jQuery('#div'+jQuery(this).attr('target')).fadeIn();
+
+        jQuery(this).addClass('activated');
         });
     });
 

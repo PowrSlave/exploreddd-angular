@@ -1152,6 +1152,37 @@ h2.conference-emphasis {
 }
 
 //Schedule page
+.schedule {
+  h2, h3 {
+    text-align: center;
+  }
+  h3 {
+    color: rgba(#000, 0.85);
+  }
+  .buttons {
+    text-align: center;
+    .schedule-btn {
+      margin-left: 10px;
+      margin-right: 10px;
+      padding: 8px 10px 8px 10px;
+      min-width: 180px;
+      span {
+        display: block;
+      }
+      .btn-title {
+        font-size: 18px;
+      }
+      .btn-date {
+        font-size: 16px;
+        text-transform: none;
+      }
+    }
+    .activated {
+      background-color: $brand-blue;
+    }
+  }
+}
+
 .schedule-display-track-headings {
   margin-bottom: $standard-margin;
   :first-child {
@@ -1165,79 +1196,85 @@ h2.conference-emphasis {
   }
 }
 #schedule-container {
-  .dayContainer {
-    position: relative;
-  }
-  .schedule-row {
-    height: 150px;
-    border-top: 1px dashed rgba(#000, 0.25);
-    padding: $half-margin;
-    span {
-      color: rgba(#000, 0.65);
+  position: relative;
+  min-height: 1500px;
+  #time-segments {
+    position: absolute;
+    width: 100%;
+    .schedule-row {
+      height: 150px;
+      border-top: 1px dashed rgba(#000, 0.25);
+      padding: $half-margin;
+      span {
+        color: rgba(#000, 0.65);
+      }
     }
   }
-  #schedule-column-container {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    padding-left: 75px;
-    .schedule-column {
-      float: left;
-      z-index: 1;
-      width: 25%;
-      height: 100%;
-      padding-left: 5px;
-      :first-child {
-        padding-left: 0;
-      }
-      .session-item {
-        padding: $quarter-margin;
-        font-family: NunitoSansLight, sans-serif;
-        font-size: 16px;
-        overflow: hidden;
-        border-bottom: 5px solid white;
-        h4 {
-          margin: 0;
-          padding: 0;
-          color: $brand-white;
-          font-family: NunitoSansSemiBold, sans-serif;
-          a {
+  .dayContainer {
+    position: relative;
+    #schedule-column-container {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      padding-left: 75px;
+      .schedule-column {
+        float: left;
+        z-index: 1;
+        width: 25%;
+        height: 100%;
+        padding-left: 5px;
+        :first-child {
+          padding-left: 0;
+        }
+        .session-item {
+          padding: $quarter-margin;
+          font-family: NunitoSansLight, sans-serif;
+          font-size: 16px;
+          overflow: hidden;
+          border-bottom: 5px solid white;
+          h4 {
+            margin: 0;
+            padding: 0;
+            color: $brand-white;
             font-family: NunitoSansSemiBold, sans-serif;
+            a {
+              font-family: NunitoSansSemiBold, sans-serif;
+            }
+          }
+          p {
+            color: #000;
+            font-family: NunitoSansLight, sans-serif;
+          }
+          a {
+            color: $brand-white;
+            font-family: NunitoSansLight, sans-serif;
+            &:hover {
+              color: #fdc33c;
+              text-decoration: none;
+              cursor: pointer;
+              cursor: hand;
+            }
           }
         }
-        p {
-          color: #000;
-          font-family: NunitoSansLight, sans-serif;
+        .gold {
+          background-color: #e6a62d;
         }
-        a {
-          color: $brand-white;
-          font-family: NunitoSansLight, sans-serif;
-          &:hover {
-            color: #fdc33c;
-            text-decoration: none;
-            cursor: pointer;
-            cursor: hand;
+        .green {
+          background-color: #2ea165;
+        }
+        .purple {
+          background-color: #682c89;
+        }
+        .blue {
+          background-color: $brand-blue;
+        }
+        .serviceSession {
+          // background-color: rgba(#000,0.35); //maybe?
+          background: none;
+          p {
+            font-family: NunitoSansSemiBold, sans-serif;
+            color: rgba(#000, 0.85);
           }
-        }
-      }
-      .gold {
-        background-color: #e6a62d;
-      }
-      .green {
-        background-color: #2ea165;
-      }
-      .purple {
-        background-color: #682c89;
-      }
-      .blue {
-        background-color: $brand-blue;
-      }
-      .serviceSession {
-        // background-color: rgba(#000,0.35); //maybe?
-        background: none;
-        p {
-          font-family: NunitoSansSemiBold, sans-serif;
-          color: rgba(#000, 0.85);
         }
       }
     }
@@ -1300,26 +1337,6 @@ h2.conference-emphasis {
 .btn {
 	@extend %btn;
 	margin-bottom: $standard-margin;
-}
-
-.buttons {
-  text-align: center;
-  .schedule-btn {
-    margin-left: 10px;
-    margin-right: 10px;
-    padding: 8px 10px 8px 10px;
-    min-width: 180px;
-    span {
-      display: block;
-    }
-    .btn-title {
-			font-size: 18px;
-    }
-    .btn-date {
-      font-size: 16px;
-      text-transform: none;
-    }
-  }
 }
 
 /* mailchimp embedded signup form styling */
