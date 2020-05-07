@@ -19,7 +19,9 @@ declare var jQuery: any;
 export class ScheduleComponent implements OnInit, OnDestroy {
 
   sessions:Array<Session>;
-  sessionsByTrack:Array<any>;
+  sessionsByTrackDay1:Array<any>;
+  sessionsByTrackDay2:Array<any>;
+  sessionsByTrackDay3:Array<any>;
   peopleByCountry:Array<any>;
   destroy$: Subject<boolean> = new Subject<boolean>();
 
@@ -82,63 +84,76 @@ export class ScheduleComponent implements OnInit, OnDestroy {
       this.computeSessionHeights(blueSessions);
       this.computeSessionBottomMargin(blueSessions);
 
-      console.log(goldSessions);
-      console.log(greenSessions);
-      console.log(purpleSessions);
-      console.log(blueSessions);
-
-
+      //console.log(goldSessions);
+      // console.log(greenSessions);
+      // console.log(purpleSessions);
+      // console.log(blueSessions);
 
       //if you get the above working, now split them up again (eesh) and then assign appropriately below
 
+      day1goldSessions = goldSessions.filter(s => moment(s.startsAt).format('dddd, MMMM Do') === 'Wednesday, September 16th');
+      day1greenSessions = greenSessions.filter(s => moment(s.startsAt).format('dddd, MMMM Do') === 'Wednesday, September 16th');
+      day1purpleSessions = purpleSessions.filter(s => moment(s.startsAt).format('dddd, MMMM Do') === 'Wednesday, September 16th');
+      day1blueSessions = blueSessions.filter(s => moment(s.startsAt).format('dddd, MMMM Do') === 'Wednesday, September 16th');
+
+      day2goldSessions = goldSessions.filter(s => moment(s.startsAt).format('dddd, MMMM Do') === 'Thursday, September 17th');
+      day2greenSessions = greenSessions.filter(s => moment(s.startsAt).format('dddd, MMMM Do') === 'Thursday, September 17th');
+      day2purpleSessions = purpleSessions.filter(s => moment(s.startsAt).format('dddd, MMMM Do') === 'Thursday, September 17th');
+      day2blueSessions = blueSessions.filter(s => moment(s.startsAt).format('dddd, MMMM Do') === 'Thursday, September 17th');
+
+      day3goldSessions = goldSessions.filter(s => moment(s.startsAt).format('dddd, MMMM Do') === 'Friday, September 18th');
+      day3greenSessions = greenSessions.filter(s => moment(s.startsAt).format('dddd, MMMM Do') === 'Friday, September 18th');
+      day3purpleSessions = purpleSessions.filter(s => moment(s.startsAt).format('dddd, MMMM Do') === 'Friday, September 18th');
+      day3blueSessions = blueSessions.filter(s => moment(s.startsAt).format('dddd, MMMM Do') === 'Friday, September 18th');
+
       //create structures for each day
 
-      // let sessionsByTrackDay1 = [
-      //   { 'track': 'gold',
-      //     'sessions': day1goldSessions
-      //   },
-      //   { 'track': 'green',
-      //     'sessions': day1greenSessions
-      //   },
-      //   { 'track': 'purple',
-      //     'sessions': day1purpleSessions
-      //   },
-      //   { 'track': 'blue',
-      //     'sessions': day1blueSessions
-      //   }
-      // ];
+      this.sessionsByTrackDay1 = [
+        { 'track': 'gold',
+          'sessions': day1goldSessions
+        },
+        { 'track': 'green',
+          'sessions': day1greenSessions
+        },
+        { 'track': 'purple',
+          'sessions': day1purpleSessions
+        },
+        { 'track': 'blue',
+          'sessions': day1blueSessions
+        }
+      ];
 
-      // let sessionsByTrackDay2 = [
-      //   { 'track': 'gold',
-      //     'sessions': day2goldSessions
-      //   },
-      //   { 'track': 'green',
-      //     'sessions': day2greenSessions
-      //   },
-      //   { 'track': 'purple',
-      //     'sessions': day2purpleSessions
-      //   },
-      //   { 'track': 'blue',
-      //     'sessions': day2blueSessions
-      //   }
-      // ];
+      console.log(this.sessionsByTrackDay1);
 
-      // let sessionsByTrackDay3 = [
-      //   { 'track': 'gold',
-      //     'sessions': day3goldSessions
-      //   },
-      //   { 'track': 'green',
-      //     'sessions': day3greenSessions
-      //   },
-      //   { 'track': 'purple',
-      //     'sessions': day3purpleSessions
-      //   },
-      //   { 'track': 'blue',
-      //     'sessions': day3blueSessions
-      //   }
-      // ];
+      this.sessionsByTrackDay2 = [
+        { 'track': 'gold',
+          'sessions': day2goldSessions
+        },
+        { 'track': 'green',
+          'sessions': day2greenSessions
+        },
+        { 'track': 'purple',
+          'sessions': day2purpleSessions
+        },
+        { 'track': 'blue',
+          'sessions': day2blueSessions
+        }
+      ];
 
-      // console.log(sessionsByTrackDay2);
+      this.sessionsByTrackDay3 = [
+        { 'track': 'gold',
+          'sessions': day3goldSessions
+        },
+        { 'track': 'green',
+          'sessions': day3greenSessions
+        },
+        { 'track': 'purple',
+          'sessions': day3purpleSessions
+        },
+        { 'track': 'blue',
+          'sessions': day3blueSessions
+        }
+      ];
 
     });
 

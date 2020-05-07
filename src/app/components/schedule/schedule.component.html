@@ -49,7 +49,7 @@
           <div class="schedule-row"><span>4:00</span></div>
           <div class="schedule-row"><span>5:00</span></div>
           <div id="schedule-column-container">
-            <div class="schedule-column" *ngFor="let column of sessionsByTrack">
+            <div class="schedule-column" *ngFor="let column of sessionsByTrackDay1">
               <div
                 *ngFor="let session of column.sessions"
                 class="session-item {{ session.track }}"
@@ -84,11 +84,95 @@
         </div> <!-- day-1 -->
 
         <div id="div2" class="targetDiv dayContainer">
-          <p>Day 2 content goes here</p>
+          <div class="schedule-row"><span>8:00</span></div>
+          <div class="schedule-row"><span>9:00</span></div>
+          <div class="schedule-row"><span>10:00</span></div>
+          <div class="schedule-row"><span>11:00</span></div>
+          <div class="schedule-row"><span>12:00</span></div>
+          <div class="schedule-row"><span>1:00</span></div>
+          <div class="schedule-row"><span>2:00</span></div>
+          <div class="schedule-row"><span>3:00</span></div>
+          <div class="schedule-row"><span>4:00</span></div>
+          <div class="schedule-row"><span>5:00</span></div>
+          <div id="schedule-column-container">
+            <div class="schedule-column" *ngFor="let column of sessionsByTrackDay2">
+              <div
+                *ngFor="let session of column.sessions"
+                class="session-item {{ session.track }}"
+                [style.height]="session.pixelHeight"
+                [style.margin-bottom]="session.pixelMarginBottom"
+                [ngClass]="{'serviceSession': session.isServiceSession}"
+              >
+                <h4>
+                  <a
+                    data-toggle="modal"
+                    data-target="#speakerModal"
+                    [attr.data-speaker-name]="session.speakers[0].fullName"
+                    [attr.data-speaker-profile-picture]="session.speakers[0].profilePicture"
+                    [attr.data-speaker-bio]="session.speakers[0].bio">
+                    {{ session.speakers[0].fullName }}
+                  </a>
+                </h4>
+                <p [hidden]="session.isServiceSession">
+                  <a
+                    data-toggle="modal"
+                    data-target="#sessionModal"
+                    [attr.data-speaker-name]="session.speakers[0].fullName"
+                    [attr.data-session-title]="session.title"
+                    [attr.data-session-description]="session.description">
+                    {{ session.title }}
+                  </a>
+                </p>
+                <p [hidden]="!session.isServiceSession">{{ session.title }}</p>
+              </div>
+            </div>
+          </div>
         </div> <!-- day-2 -->
 
         <div id="div3" class="targetDiv dayContainer">
-          <p>Day 3 content goes here</p>
+          <div class="schedule-row"><span>8:00</span></div>
+          <div class="schedule-row"><span>9:00</span></div>
+          <div class="schedule-row"><span>10:00</span></div>
+          <div class="schedule-row"><span>11:00</span></div>
+          <div class="schedule-row"><span>12:00</span></div>
+          <div class="schedule-row"><span>1:00</span></div>
+          <div class="schedule-row"><span>2:00</span></div>
+          <div class="schedule-row"><span>3:00</span></div>
+          <div class="schedule-row"><span>4:00</span></div>
+          <div class="schedule-row"><span>5:00</span></div>
+          <div id="schedule-column-container">
+            <div class="schedule-column" *ngFor="let column of sessionsByTrackDay3">
+              <div
+                *ngFor="let session of column.sessions"
+                class="session-item {{ session.track }}"
+                [style.height]="session.pixelHeight"
+                [style.margin-bottom]="session.pixelMarginBottom"
+                [ngClass]="{'serviceSession': session.isServiceSession}"
+              >
+                <h4>
+                  <a
+                    data-toggle="modal"
+                    data-target="#speakerModal"
+                    [attr.data-speaker-name]="session.speakers[0].fullName"
+                    [attr.data-speaker-profile-picture]="session.speakers[0].profilePicture"
+                    [attr.data-speaker-bio]="session.speakers[0].bio">
+                    {{ session.speakers[0].fullName }}
+                  </a>
+                </h4>
+                <p [hidden]="session.isServiceSession">
+                  <a
+                    data-toggle="modal"
+                    data-target="#sessionModal"
+                    [attr.data-speaker-name]="session.speakers[0].fullName"
+                    [attr.data-session-title]="session.title"
+                    [attr.data-session-description]="session.description">
+                    {{ session.title }}
+                  </a>
+                </p>
+                <p [hidden]="!session.isServiceSession">{{ session.title }}</p>
+              </div>
+            </div>
+          </div>
         </div> <!-- day-3 -->
 
       </div> <!-- schedule-container -->
