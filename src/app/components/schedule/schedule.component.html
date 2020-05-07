@@ -57,16 +57,39 @@
                 [style.margin-bottom]="session.pixelMarginBottom"
                 [ngClass]="{'serviceSession': session.isServiceSession}"
               >
-                <h4>
-                  <a
-                    data-toggle="modal"
-                    data-target="#speakerModal"
-                    [attr.data-speaker-name]="session.speakers[0].fullName"
-                    [attr.data-speaker-profile-picture]="session.speakers[0].profilePicture"
-                    [attr.data-speaker-bio]="session.speakers[0].bio">
-                    {{ session.speakers[0].fullName }}
-                  </a>
-                </h4>
+                <div *ngIf="session.speakers.length === 1; else twoSpeakers">
+                  <h4>
+                    <a
+                      data-toggle="modal"
+                      data-target="#speakerModal"
+                      [attr.data-speaker-name]="session.speakers[0].fullName"
+                      [attr.data-speaker-profile-picture]="session.speakers[0].profilePicture"
+                      [attr.data-speaker-bio]="session.speakers[0].bio">
+                      {{ session.speakers[0].fullName }}
+                    </a>
+                  </h4>
+                </div>
+                <ng-template #twoSpeakers>
+                  <h4>
+                    <a
+                      data-toggle="modal"
+                      data-target="#speakerModal"
+                      [attr.data-speaker-name]="session.speakers[0].fullName"
+                      [attr.data-speaker-profile-picture]="session.speakers[0].profilePicture"
+                      [attr.data-speaker-bio]="session.speakers[0].bio">
+                      {{ session.speakers[0].fullName }}
+                    </a>
+                    &
+                    <a
+                      data-toggle="modal"
+                      data-target="#speakerModal"
+                      [attr.data-speaker-name]="session.speakers[1].fullName"
+                      [attr.data-speaker-profile-picture]="session.speakers[1].profilePicture"
+                      [attr.data-speaker-bio]="session.speakers[1].bio">
+                      {{ session.speakers[1].fullName }}
+                    </a>
+                  </h4>
+                </ng-template>
                 <p [hidden]="session.isServiceSession">
                   <a
                     data-toggle="modal"
