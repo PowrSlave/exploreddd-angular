@@ -11,7 +11,6 @@ export interface Session {
   format: string,
   startsAt: string,
   endsAt: string,
-  prettyStartDay: string,
   pixelHeight?: string,
   pixelMarginBottom?: string,
   track: string,

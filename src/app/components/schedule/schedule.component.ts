@@ -33,120 +33,112 @@ export class ScheduleComponent implements OnInit, OnDestroy {
       //sort sessions by startDate
       this.sessions.sort((a, b) => (a.startsAt > b.startsAt) ? 1 : -1);
 
-      // let goldSessions= [];
-      // let greenSessions = [];
-      // let purpleSessions = [];
-      // let blueSessions = [];
+      //trim title lengths so they don't wrap too much in the session DOM item
+      this.sessions.forEach(function(element:Session){
+        if (element.title.length > 60) {
+          element.title = element.title.substring(0,60) + '...';
+        }
+      });
 
-      //this.sessions.forEach(function(element:Session){
+      //try fresh here
 
-        // if (element.title.length > 60) {
-        //   element.title = element.title.substring(0,60) + '...';
-        // }
+      let day1 = this.sessions.filter(s => moment(s.startsAt).format('dddd, MMMM Do') === 'Wednesday, September 16th');
+      let day2 = this.sessions.filter(s => moment(s.startsAt).format('dddd, MMMM Do') === 'Thursday, September 17th');
+      let day3 = this.sessions.filter(s => moment(s.startsAt).format('dddd, MMMM Do') === 'Friday, September 18th');
 
-        //this is duplicating sessions
-        //element.prettyStartDay = moment(element.startsAt).format('dddd, MMMM Do');
+      //then split the day arrays up by colour
 
-      //   switch (element.track) {
-      //     case 'gold':
-      //       goldSessions.push(element);
-      //     break;
-      //     case 'green':
-      //       greenSessions.push(element);
-      //     break;
-      //     case 'purple':
-      //       purpleSessions.push(element);
-      //     break;
-      //     case 'blue':
-      //       blueSessions.push(element);
-      //     break;
-      //   }
-      // });
+      let day1goldSessions = day1.filter(s => s.track === 'gold');
+      let day1greenSessions = day1.filter(s => s.track === 'green');
+      let day1purpleSessions = day1.filter(s => s.track === 'purple');
+      let day1blueSessions = day1.filter(s => s.track === 'blue');
 
-      //console.log(this.sessions);
+      let day2goldSessions = day2.filter(s => s.track === 'gold');
+      let day2greenSessions = day2.filter(s => s.track === 'green');
+      let day2purpleSessions = day2.filter(s => s.track === 'purple');
+      let day2blueSessions = day2.filter(s => s.track === 'blue');
+
+      let day3goldSessions = day3.filter(s => s.track === 'gold');
+      let day3greenSessions = day3.filter(s => s.track === 'green');
+      let day3purpleSessions = day3.filter(s => s.track === 'purple');
+      let day3blueSessions = day3.filter(s => s.track === 'blue');
+
+      //join all session track arrays together for computation of session heights and layout spacing between them
+      let goldSessions = day1goldSessions.concat(day2goldSessions, day3goldSessions);
+      let greenSessions = day1greenSessions.concat(day2greenSessions, day3greenSessions);
+      let purpleSessions = day1purpleSessions.concat(day2purpleSessions, day3purpleSessions);
+      let blueSessions = day1blueSessions.concat(day2blueSessions, day3blueSessions);
 
       //this needs to happen for each track coloured array (refactor later)
-      // this.computeSessionHeights(goldSessions);
-      // this.computeSessionBottomMargin(goldSessions);
+      this.computeSessionHeights(goldSessions);
+      this.computeSessionBottomMargin(goldSessions);
 
-      // this.computeSessionHeights(greenSessions);
-      // this.computeSessionBottomMargin(greenSessions);
+      this.computeSessionHeights(greenSessions);
+      this.computeSessionBottomMargin(greenSessions);
 
-      // this.computeSessionHeights(purpleSessions);
-      // this.computeSessionBottomMargin(purpleSessions);
+      this.computeSessionHeights(purpleSessions);
+      this.computeSessionBottomMargin(purpleSessions);
 
-      // this.computeSessionHeights(blueSessions);
-      // this.computeSessionBottomMargin(blueSessions);
+      this.computeSessionHeights(blueSessions);
+      this.computeSessionBottomMargin(blueSessions);
 
-      //sessionsByTrack only works for a single day, so make it sessionsByTrackDay1 etc...
-      // this.sessionsByTrack = [
+      console.log(goldSessions);
+      console.log(greenSessions);
+      console.log(purpleSessions);
+      console.log(blueSessions);
+
+
+
+      //if you get the above working, now split them up again (eesh) and then assign appropriately below
+
+      //create structures for each day
+
+      // let sessionsByTrackDay1 = [
       //   { 'track': 'gold',
-      //     'sessions': goldSessions
+      //     'sessions': day1goldSessions
       //   },
       //   { 'track': 'green',
-      //     'sessions': greenSessions
+      //     'sessions': day1greenSessions
       //   },
       //   { 'track': 'purple',
-      //     'sessions': purpleSessions
+      //     'sessions': day1purpleSessions
       //   },
       //   { 'track': 'blue',
-      //     'sessions': blueSessions
+      //     'sessions': day1blueSessions
       //   }
       // ];
 
-      // console.log(this.sessionsByTrack);
+      // let sessionsByTrackDay2 = [
+      //   { 'track': 'gold',
+      //     'sessions': day2goldSessions
+      //   },
+      //   { 'track': 'green',
+      //     'sessions': day2greenSessions
+      //   },
+      //   { 'track': 'purple',
+      //     'sessions': day2purpleSessions
+      //   },
+      //   { 'track': 'blue',
+      //     'sessions': day2blueSessions
+      //   }
+      // ];
 
-      let sessionsByTrackDay1 = [
-        { 'track': 'gold',
-          'sessions': []
-        },
-        { 'track': 'green',
-          'sessions': []
-        },
-        { 'track': 'purple',
-          'sessions': []
-        },
-        { 'track': 'blue',
-          'sessions': []
-        }
-      ];
+      // let sessionsByTrackDay3 = [
+      //   { 'track': 'gold',
+      //     'sessions': day3goldSessions
+      //   },
+      //   { 'track': 'green',
+      //     'sessions': day3greenSessions
+      //   },
+      //   { 'track': 'purple',
+      //     'sessions': day3purpleSessions
+      //   },
+      //   { 'track': 'blue',
+      //     'sessions': day3blueSessions
+      //   }
+      // ];
 
-      let sessionsByTrackDay2 = [
-        { 'track': 'gold',
-          'sessions': []
-        },
-        { 'track': 'green',
-          'sessions': []
-        },
-        { 'track': 'purple',
-          'sessions': []
-        },
-        { 'track': 'blue',
-          'sessions': []
-        }
-      ];
-
-      let sessionsByTrackDay3 = [
-        { 'track': 'gold',
-          'sessions': []
-        },
-        { 'track': 'green',
-          'sessions': []
-        },
-        { 'track': 'purple',
-          'sessions': []
-        },
-        { 'track': 'blue',
-          'sessions': []
-        }
-      ];
-
-      //try fresh here
-      this.sessions.forEach(function(element:Session){
-
-      });
-
-
+      // console.log(sessionsByTrackDay2);
 
     });
 
